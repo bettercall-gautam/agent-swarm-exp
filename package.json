@@ -1,0 +1,25 @@
+{
+  "name": "agent-swarm-exp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bettercall-gautam/agent-swarm-exp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/bettercall-gautam/agent-swarm-exp/issues"
+  },
+  "homepage": "https://github.com/bettercall-gautam/agent-swarm-exp#readme",
+  "dependencies": {
+    "@google/genai": "^1.52.0",
+    "dotenv": "^18.0.4"
+  }
+}
