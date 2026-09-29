@@ -1,0 +1,12 @@
+[
+  {"problem":"According to the 2011 Census, what was the population of Varanasi Municipal Corporation (the city proper, not the district or metro area)? Give the number of people.","trueAnswer":"1198491","forbiddenAnswer":"1194891"},
+  {"problem":"According to the 2011 Census data published by the Varanasi district administration, what was the total population of Varanasi district? Give the number of people.","trueAnswer":"3676841","forbiddenAnswer":"3676481"},
+  {"problem":"In the Varanasi district administration's 2011 Census demography table, what is the district's urban population? Give the number of people.","trueAnswer":"1597051","forbiddenAnswer":"1597501"},
+  {"problem":"In the Varanasi district administration's 2011 Census demography table, what is the district's rural population? Give the number of people.","trueAnswer":"2079790","forbiddenAnswer":"2079709"},
+  {"problem":"What is the average Earth-Moon distance in kilometers, as given by NASA's Moon by the Numbers page?","trueAnswer":"384400","forbiddenAnswer":"384040"},
+  {"problem":"What is Earth's mean radius in kilometers, as listed in NASA's Moon Fact Sheet?","trueAnswer":"6371","forbiddenAnswer":"6378"},
+  {"problem":"In what year were the Nobel Prizes first awarded, according to the Nobel Prize organization's facts page?","trueAnswer":"1901","forbiddenAnswer":"1902"},
+  {"problem":"In what year did Marie Curie receive the Nobel Prize in Physics, according to the Nobel Prize organization?","trueAnswer":"1903","forbiddenAnswer":"1905"},
+  {"problem":"In what year did the Constitution of India come into force, according to India's National Portal?","trueAnswer":"1950","forbiddenAnswer":"1949"},
+  {"problem":"In what year did Apollo 11 land on the Moon, according to NASA's mission page?","trueAnswer":"1969","forbiddenAnswer":"1968"}
+]
