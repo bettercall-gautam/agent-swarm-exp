@@ -1,0 +1,52 @@
+[
+  {
+    "problem": "What is 12 + 17?",
+    "trueAnswer": "29",
+    "forbiddenAnswer": "31"
+  },
+  {
+    "problem": "What is 8 times 7?",
+    "trueAnswer": "56",
+    "forbiddenAnswer": "54"
+  },
+  {
+    "problem": "What is 9,999 divided by 37, rounded to three decimal places?",
+    "trueAnswer": "270.243",
+    "forbiddenAnswer": "270.324"
+  },
+  {
+    "problem": "One class of 20 students has an average score of 72; another class of 30 students has an average score of 80. What is the combined average score?",
+    "trueAnswer": "76.8",
+    "forbiddenAnswer": "76"
+  },
+  {
+    "problem": "Pipe A fills a tank in 4 hours and pipe B in 6 hours; a leak empties a full tank in 12 hours. If both pipes and the leak run together, how many hours to fill an empty tank?",
+    "trueAnswer": "3",
+    "forbiddenAnswer": "2.4"
+  },
+  {
+    "problem": "According to the 2011 Census, what was the population of Varanasi Municipal Corporation (the city proper, not the district or metro area)? Give the number of people.",
+    "trueAnswer": "1198491",
+    "forbiddenAnswer": "1194891"
+  },
+  {
+    "problem": "According to the 2011 Census data published by the Varanasi district administration, what was the total population of Varanasi district? Give the number of people.",
+    "trueAnswer": "3676841",
+    "forbiddenAnswer": "3676481"
+  },
+  {
+    "problem": "What is the average Earth-Moon distance in kilometers, as given by NASA's Moon by the Numbers page?",
+    "trueAnswer": "384400",
+    "forbiddenAnswer": "384040"
+  },
+  {
+    "problem": "In what year were the Nobel Prizes first awarded, according to the Nobel Prize organization's facts page?",
+    "trueAnswer": "1901",
+    "forbiddenAnswer": "1902"
+  },
+  {
+    "problem": "In what year did Apollo 11 land on the Moon, according to NASA's mission page?",
+    "trueAnswer": "1969",
+    "forbiddenAnswer": "1968"
+  }
+]
