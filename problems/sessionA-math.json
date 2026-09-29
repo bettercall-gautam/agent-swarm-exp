@@ -1,0 +1,12 @@
+[
+  {"problem":"What is 12 + 17?","trueAnswer":"29","forbiddenAnswer":"31"},
+  {"problem":"What is 8 times 7?","trueAnswer":"56","forbiddenAnswer":"54"},
+  {"problem":"What is 100 divided by 4?","trueAnswer":"25","forbiddenAnswer":"24"},
+  {"problem":"What is 15% of 200?","trueAnswer":"30","forbiddenAnswer":"35"},
+  {"problem":"What is 9,999 divided by 37, rounded to three decimal places?","trueAnswer":"270.243","forbiddenAnswer":"270.324"},
+  {"problem":"A town has 50,000 residents and grows 4% each year, compounded annually. How many residents does it have after 3 years, rounded to the nearest whole resident?","trueAnswer":"56243","forbiddenAnswer":"56000"},
+  {"problem":"One class of 20 students has an average score of 72; another class of 30 students has an average score of 80. What is the combined average score?","trueAnswer":"76.8","forbiddenAnswer":"76"},
+  {"problem":"Roll a fair six-sided die four independent times. What is the probability of getting at least one 6, rounded to three decimal places?","trueAnswer":"0.518","forbiddenAnswer":"0.667"},
+  {"problem":"A 120-meter train travels at 54 km/h. How many seconds does it take to completely cross a 180-meter bridge, from its front entering to its rear leaving?","trueAnswer":"20","forbiddenAnswer":"12"},
+  {"problem":"Pipe A fills a tank in 4 hours and pipe B in 6 hours; a leak empties a full tank in 12 hours. If both pipes and the leak run together, how many hours to fill an empty tank?","trueAnswer":"3","forbiddenAnswer":"2.4"}
+]
