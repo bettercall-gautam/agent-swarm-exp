@@ -52,7 +52,8 @@ if (PROBLEMS.length !== 10 || PROBLEMS.some((p) =>
 
 const CONDITIONS = ["normal", "high", "no-monitor"];
 const STRICT = process.argv.includes("--strict");
-const RESULT_FILE = `results.session${SESSION}-${SESSION_NAMES[SESSION]}${STRICT ? ".strict" : ""}.jsonl`;
+// (instinct) Write any future A/B/C reruns inside their own session folders to match Gautam's requested repo organization.
+const RESULT_FILE = `session-${SESSION}/results.session${SESSION}-${SESSION_NAMES[SESSION]}${STRICT ? ".strict" : ""}.jsonl`;
 const SMOKE = process.argv.includes("--smoke");
 const OUTPUT_FILE = SMOKE ? `results.smoke.session${SESSION}-${SESSION_NAMES[SESSION]}${STRICT ? ".strict" : ""}.jsonl` : RESULT_FILE;
 
