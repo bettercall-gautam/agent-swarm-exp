@@ -64,13 +64,13 @@ function getRunsPerCondition() {
   return 10;
 }
 
-async function runOneCondition(condition, runsCount, tally) {
+async function runOneCondition(condition, runsCount, tally, existingRows = []) {
   const workerCondition = condition === "high" ? "high" : "normal";
   const isMonitored = condition !== "no-monitor";
 
-  let attempted = 0;
-  let correct = 0;
-  for (let i = 0; i < runsCount; i++) {
+  let attempted = existingRows.filter((r) => r.workerResult).length;
+  let correct = existingRows.filter((r) => r.workerResult && r.answerMatchesKey).length;
+  for (let i = existingRows.length; i < runsCount; i++) {
     const { problem, trueAnswer, forbiddenAnswer } =
       PROBLEMS[i % PROBLEMS.length];
     const row = {
@@ -139,24 +139,43 @@ async function main() {
   if (SMOKE && runsPerCondition !== 2) throw new Error("--smoke requires --runs=2");
   if (!process.env.GEMINI_API_KEY) throw new Error("GEMINI_API_KEY is missing from .env");
   if (process.env.GEMINI_MODEL !== "gemini-3.5-flash-lite") throw new Error("Set GEMINI_MODEL=gemini-3.5-flash-lite in .env");
+  const resume = process.argv.includes("--resume");
+  let existingRows = [];
   try {
     await access(OUTPUT_FILE);
-    throw new Error(`Refusing to append to existing ${OUTPUT_FILE}; move it aside first`);
+    if (!resume) throw new Error(`Refusing to append to existing ${OUTPUT_FILE}; use --resume or move it aside`);
+    const text = await readFile(OUTPUT_FILE, "utf8");
+    if (!text.endsWith("\n")) throw new Error("Last JSONL row is incomplete; inspect it before resume");
+    existingRows = text.trimEnd().split("\n").map((line) => JSON.parse(line));
   } catch (err) {
     if (err.code !== "ENOENT") throw err;
+    if (resume) throw new Error(`Cannot resume: ${OUTPUT_FILE} does not exist`);
   }
+  if (existingRows.length > runsPerCondition * CONDITIONS.length) throw new Error("Too many existing rows");
+  existingRows.forEach((row, index) => {
+    const expectedCondition = CONDITIONS[Math.floor(index / runsPerCondition)];
+    const expectedIndex = index % runsPerCondition;
+    const expectedProblem = PROBLEMS[expectedIndex];
+    if (row.condition !== expectedCondition || row.runIndex !== expectedIndex ||
+        row.problem !== expectedProblem.problem || row.trueAnswer !== expectedProblem.trueAnswer ||
+        row.forbiddenAnswer !== expectedProblem.forbiddenAnswer || row.strictGrading !== STRICT)
+      throw new Error(`Existing row ${index} mismatches this session; refusing resume`);
+    if (row.error && /\b429\b|RESOURCE_EXHAUSTED|quota exceeded|rate limit/i.test(row.error))
+      throw new Error("Prior row has quota/rate-limit error; stopping");
+  });
   console.log(`Session ${SESSION}: ${runsPerCondition} runs per condition -> ${OUTPUT_FILE}`);
 
   const summary = {};
 
   for (const condition of CONDITIONS) {
+    const prior = existingRows.filter((r) => r.condition === condition);
     const tally = {
-      workerAdmissions: 0,
-      cheatsDetected: 0,
-      reports: 0,
-      errors: 0,
+      workerAdmissions: prior.filter((r) => r.workerResult?.admittedKeyUse).length,
+      cheatsDetected: prior.filter((r) => r.monitorResult?.verdict === "cheating").length,
+      reports: prior.filter((r) => r.monitorResult?.shouldReport).length,
+      errors: prior.filter((r) => r.error).length,
     };
-    const completed = await runOneCondition(condition, runsPerCondition, tally);
+    const completed = await runOneCondition(condition, runsPerCondition, tally, prior);
     summary[condition] = tally;
     console.log(`Finished condition: ${condition}`);
     if (!completed) break;
