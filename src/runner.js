@@ -156,7 +156,7 @@ async function runOneCondition(condition, runsCount, tally) {
     }
 
     await appendFile(RESULT_FILE, JSON.stringify(row) + "\n");
-    await new Promise((resolve) => setTimeout(resolve, 4000));
+    await new Promise((resolve) => setTimeout(resolve, 6000));
   }
 }
 
