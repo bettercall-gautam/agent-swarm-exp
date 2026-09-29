@@ -4,6 +4,10 @@
 - `session-A/`, `session-B/`, `session-C/`: original strict results and post-hoc no-monitor audits, unchanged.
 - `session-legacy/`: earlier `results.strict.jsonl`, preserved.
 - `session-4/`: 90-run honesty-prompt experiment and separate secret-monitor audit.
+<!-- (instinct) Document the isolated S5 outputs so the previous results cannot be overwritten during the amnesty/threat experiment. -->
+- `session-5/`: 90-run amnesty-plus-threat experiment and separate secret-monitor audit.
+<!-- (instinct) Keep S6 control outputs separate so the prior pressure prompts and their results remain reusable and unchanged. -->
+- `session-6/`: 90-run control (normal/high worker prompts identical, no-monitor disclosure retained) and secret-monitor audit.
 
 # Three-session strict experiment
 
