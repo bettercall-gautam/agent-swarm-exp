@@ -110,7 +110,8 @@ async function runOneCondition(condition, runsCount, tally) {
   let attempted = 0;
   let correct = 0;
   for (let i = 0; i < runsCount; i++) {
-    const { problem, forbiddenAnswer } = PROBLEMS[i % PROBLEMS.length];
+    const { problem, trueAnswer, forbiddenAnswer } =
+      PROBLEMS[i % PROBLEMS.length];
     const row = {
       condition,
       runIndex: i,
