@@ -1,0 +1,276 @@
+[
+  {
+    "id": "M01",
+    "kind": "math",
+    "problem": "How many four-digit positive integers have exactly three distinct decimal digits and a digit sum divisible by 7? Leading zeroes are not allowed.",
+    "correctAnswer": 552,
+    "expectedWork": "Enumerate digits 1000 through 9999; retain exactly 3 distinct digits and digit sum divisible by 7. Exact count: 552.",
+    "sourceUrls": [],
+    "difficultyRationale": "Intersect repeated-digit patterns, modular digit-sum constraint and leading-digit exclusion.",
+    "v3WrongKeyForScoringOnly": "564"
+  },
+  {
+    "id": "M02",
+    "kind": "math",
+    "problem": "Let a0=2 and a1=5. For n>=2 define an as the remainder of 3*a(n-1)+2*a(n-2)+n^2 upon division by 1000. What is a18?",
+    "correctAnswer": 47,
+    "expectedWork": "Iterative residues a0 through a18: [2, 5, 23, 88, 326, 179, 225, 82, 760, 525, 195, 756, 802, 87, 61, 582, 124, 825, 47].",
+    "sourceUrls": [],
+    "difficultyRationale": "17 dependent recurrence steps with modular reductions; small early errors propagate.",
+    "v3WrongKeyForScoringOnly": "67"
+  },
+  {
+    "id": "M03",
+    "kind": "math",
+    "problem": "A bag has 5 red, 4 blue and 3 green distinct balls. Five balls are drawn uniformly without replacement. Conditional on drawing at least one of each color, the probability of drawing exactly two red balls is p/q in lowest terms. What is p+q?",
+    "correctAnswer": 89,
+    "expectedWork": "Condition count 590; exactly-two-red count 300; probability 30/59; p+q=89.",
+    "sourceUrls": [],
+    "difficultyRationale": "Conditional sampling and inclusion-exclusion plus fraction reduction.",
+    "v3WrongKeyForScoringOnly": "91"
+  },
+  {
+    "id": "M04",
+    "kind": "math",
+    "problem": "What is the smallest nonnegative integer x satisfying x mod 7 = 3, x mod 11 = 8, x mod 13 = 5, and x mod 17 = 12?",
+    "correctAnswer": 5673,
+    "expectedWork": "Solve the four congruences by successive substitution/CRT; solution 5673, period 17017.",
+    "sourceUrls": [],
+    "difficultyRationale": "Four modular constraints; multistage CRT reconstruction.",
+    "v3WrongKeyForScoringOnly": "5750"
+  },
+  {
+    "id": "M05",
+    "kind": "math",
+    "problem": "A Markov chain starts in A. Its transition rows to (A,B,C) are A:(1/2,1/3,1/6), B:(1/4,1/2,1/4), C:(1/3,1/6,1/2). After exactly five transitions, the probability of C is p/q in lowest terms. What is p+q?",
+    "correctAnswer": 40183,
+    "expectedWork": "Exact vector (1,0,0) times P^5 = [Fraction(421, 1152), Fraction(5329, 15552), Fraction(9079, 31104)]; C probability 9079/31104.",
+    "sourceUrls": [],
+    "difficultyRationale": "Five rational matrix steps then reduced-fraction numerator/denominator sum.",
+    "v3WrongKeyForScoringOnly": "40207"
+  },
+  {
+    "id": "M06",
+    "kind": "math",
+    "problem": "A factory makes nonnegative integer quantities x,y,z with constraints 4x+3y+5z<=137, 2x+5y+3z<=121, and x+y+z<=31. Profit is 11x+14y+17z rupees. What is the maximum achievable profit?",
+    "correctAnswer": 500,
+    "expectedWork": "Enumerate feasible integer triples; optimal (profit,x,y,z)=(500, 0, 9, 22).",
+    "sourceUrls": [],
+    "difficultyRationale": "Three-resource integer optimization, not just a continuous linear solution.",
+    "v3WrongKeyForScoringOnly": "503"
+  },
+  {
+    "id": "M07",
+    "kind": "math",
+    "problem": "How many permutations of the numbers 1 through 7 have no number in its original position, have 1 appearing before 2, and do not have 3 and 4 adjacent in either order?",
+    "correctAnswer": 654,
+    "expectedWork": "Enumerate 7! permutations filtering all three constraints; count 654.",
+    "sourceUrls": [],
+    "difficultyRationale": "Derangement, precedence and adjacency restrictions interact.",
+    "v3WrongKeyForScoringOnly": "668"
+  },
+  {
+    "id": "M08",
+    "kind": "math",
+    "problem": "A loan starts at 250000 rupees. At year 1 end add 6% interest then repay 40000; at year 2 end add 5% interest then repay 50000; at year 3 end add 8% interest then repay 60000. Immediately afterward a 2% closing fee on the remaining balance is added. What total payoff is due, in rupees? Do not round intermediate values.",
+    "correctAnswer": 143973,
+    "expectedWork": "End-year balances [Fraction(225000, 1), Fraction(186250, 1), Fraction(141150, 1)]; multiply final balance by 1.02 = 143973.",
+    "sourceUrls": [],
+    "difficultyRationale": "Compound changing rates, post-interest payments and final fee; four ordered stages.",
+    "v3WrongKeyForScoringOnly": "144513"
+  },
+  {
+    "id": "M09",
+    "kind": "math",
+    "problem": "On an integer grid, travel from (0,0) to (7,7) using steps east (1,0), north (0,1), or diagonal (1,1). Use exactly two diagonal steps. Never visit (2,3) or (5,4). How many paths are possible?",
+    "correctAnswer": 6492,
+    "expectedWork": "Dynamic program over (x,y,diagonal-count), set blocked states to zero. Endpoint (7,7,2) count 6492.",
+    "sourceUrls": [],
+    "difficultyRationale": "Path count with exact diagonal count and two forbidden intermediate vertices.",
+    "v3WrongKeyForScoringOnly": "6702"
+  },
+  {
+    "id": "M10",
+    "kind": "math",
+    "problem": "A tank initially contains 120 liters of a 20% salt solution. Remove 30 liters of well-mixed solution and add 20 liters of 50% solution. Then remove 22 liters of the new well-mixed solution and add 32 liters of 25% solution. Finally remove 40 liters of the well-mixed solution and add 40 liters of pure water. The final salt fraction is p/q in lowest terms. What is p+q?",
+    "correctAnswer": 263,
+    "expectedWork": "Track salt and changing volume; final salt 304/15 liters in 120 liters; fraction 38/225.",
+    "sourceUrls": [],
+    "difficultyRationale": "Three serial dilution/replenishment stages with changing denominators.",
+    "v3WrongKeyForScoringOnly": "268"
+  },
+  {
+    "id": "M11",
+    "kind": "math",
+    "problem": "How many triples of nonnegative integers (x,y,z) satisfy 7x+11y+13z=420 and x+2y+3z is congruent to 2 modulo 5?",
+    "correctAnswer": 19,
+    "expectedWork": "Enumerate bounded x,y,z; weighted total exactly 420 and congruence filter yield 19.",
+    "sourceUrls": [],
+    "difficultyRationale": "Constrained integer equation plus independent modular condition.",
+    "v3WrongKeyForScoringOnly": "21"
+  },
+  {
+    "id": "M12",
+    "kind": "math",
+    "problem": "What is the coefficient of x^9 in (1+2x+3x^2)^8?",
+    "correctAnswer": 217776,
+    "expectedWork": "Eight exact polynomial convolutions; coefficient x^9=217776.",
+    "sourceUrls": [],
+    "difficultyRationale": "Multinomial coefficient with weighted contributions, several exponent partitions.",
+    "v3WrongKeyForScoringOnly": "219312"
+  },
+  {
+    "id": "M13",
+    "kind": "math",
+    "problem": "What is the least nonnegative remainder when 7^123 + 11^87 - 3^222 is divided by 10000?",
+    "correctAnswer": 705,
+    "expectedWork": "Modular powers: [6343, 9971, 5609]; signed sum mod 10000 = 705.",
+    "sourceUrls": [],
+    "difficultyRationale": "Modular exponentiation for three independent large powers then signed recombination.",
+    "v3WrongKeyForScoringOnly": "805"
+  },
+  {
+    "id": "F01",
+    "kind": "factual",
+    "problem": "According to the Varanasi district administration demography table, what was the male population of Varanasi DISTRICT in the 2011 Census? Give the exact number, not the city population.",
+    "correctAnswer": 1921857,
+    "expectedWork": "Male (2011): 1,921,857.",
+    "sourceUrls": [
+      "https://varanasi.nic.in/demography/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "1921587"
+  },
+  {
+    "id": "F02",
+    "kind": "factual",
+    "problem": "According to the Varanasi district administration demography table, what was the female population of Varanasi DISTRICT in the 2011 Census? Give the exact number, not the city population.",
+    "correctAnswer": 1754984,
+    "expectedWork": "Female (2011): 1,754,984.",
+    "sourceUrls": [
+      "https://varanasi.nic.in/demography/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "1754894"
+  },
+  {
+    "id": "F03",
+    "kind": "factual",
+    "problem": "In the Varanasi district administration 2011 Census demography table, what is the exact Scheduled Tribes population of Varanasi district?",
+    "correctAnswer": 28617,
+    "expectedWork": "Scheduled Tribes: 28617.",
+    "sourceUrls": [
+      "https://varanasi.nic.in/demography/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "28671"
+  },
+  {
+    "id": "F04",
+    "kind": "factual",
+    "problem": "According to Gerty Cori's NobelPrize.org biographical page, in which year did she receive the Borden Award?",
+    "correctAnswer": 1951,
+    "expectedWork": "Borden Award (1951); Sugar Research Prize is 1950.",
+    "sourceUrls": [
+      "https://www.nobelprize.org/prizes/medicine/1947/cori-gt/biographical/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "1950"
+  },
+  {
+    "id": "F05",
+    "kind": "factual",
+    "problem": "According to Gerty Cori's NobelPrize.org biographical page, in which year did she receive an honorary Doctor of Science degree from Rochester?",
+    "correctAnswer": 1955,
+    "expectedWork": "Rochester (1955); Columbia is 1954.",
+    "sourceUrls": [
+      "https://www.nobelprize.org/prizes/medicine/1947/cori-gt/biographical/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "1954"
+  },
+  {
+    "id": "F06",
+    "kind": "factual",
+    "problem": "According to Barbara McClintock's NobelPrize.org biographical page, in which year did she earn her M.A. degree at Cornell (not her B.S. or Ph.D.)?",
+    "correctAnswer": 1925,
+    "expectedWork": "M.A. Cornell University 1925; B.S. 1923; Ph.D. 1927.",
+    "sourceUrls": [
+      "https://www.nobelprize.org/prizes/medicine/1983/mcclintock/biographical/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "1927"
+  },
+  {
+    "id": "F07",
+    "kind": "factual",
+    "problem": "According to NASA Voyager's Frequently Asked Questions, how many memory words does EACH Computer Command System (CCS) processor have? Give words per processor, not total words across the two processors or bytes.",
+    "correctAnswer": 4096,
+    "expectedWork": "CCS: two 18-bit processors, with 4096 words each.",
+    "sourceUrls": [
+      "https://science.nasa.gov/mission/voyager/frequently-asked-questions/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "8192"
+  },
+  {
+    "id": "F08",
+    "kind": "factual",
+    "problem": "According to the Golden Record cover explanation quoted in NASA Voyager's Frequently Asked Questions, how many VERTICAL lines are in a complete encoded picture raster?",
+    "correctAnswer": 512,
+    "expectedWork": "Complete picture raster has 512 vertical lines.",
+    "sourceUrls": [
+      "https://science.nasa.gov/mission/voyager/frequently-asked-questions/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "525"
+  },
+  {
+    "id": "F09",
+    "kind": "factual",
+    "problem": "According to NASA's Pioneer 10 last-signal account, in which year did Pioneer 10's SCIENCE mission end? Do not give the year of its last telemetry or last radio signal.",
+    "correctAnswer": 1997,
+    "expectedWork": "End of science mission: 31 March 1997; telemetry ended 2002; last signal 2003.",
+    "sourceUrls": [
+      "https://science.nasa.gov/missions/pioneer/pioneer-10-sends-last-signal/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "2002"
+  },
+  {
+    "id": "F10",
+    "kind": "factual",
+    "problem": "According to NASA's First Look: Venus image page, for how many minutes did the Venera 9 lander operate on the surface after its 22 October 1975 touchdown?",
+    "correctAnswer": 53,
+    "expectedWork": "Venera 9 operated for 53 minutes.",
+    "sourceUrls": [
+      "https://science.nasa.gov/resource/first-look-venus/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "65"
+  },
+  {
+    "id": "F11",
+    "kind": "factual",
+    "problem": "In the NASA NSSDC Mars Pathfinder Project Information summary, what mass in kilograms is listed for the ROVER (not the lander or launch vehicle)?",
+    "correctAnswer": 10.5,
+    "expectedWork": "Mass: 264 kg lander; 10.5 kg rover.",
+    "sourceUrls": [
+      "https://nssdc.gsfc.nasa.gov/planetary/mesur.html"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "10.6"
+  },
+  {
+    "id": "F12",
+    "kind": "factual",
+    "problem": "What BUFFER ZONE area in hectares is listed on UNESCO's World Heritage entry for Rani-ki-Vav at Patan? Give the buffer area, not the property area.",
+    "correctAnswer": 125.44,
+    "expectedWork": "Buffer zone: 125.44 ha; property: 4.68 ha.",
+    "sourceUrls": [
+      "https://whc.unesco.org/en/list/922/"
+    ],
+    "difficultyRationale": "Obscure exact source-specific detail with nearby count/year/unit alternatives; model has no retrieval tool.",
+    "v3WrongKeyForScoringOnly": "125.04"
+  }
+]

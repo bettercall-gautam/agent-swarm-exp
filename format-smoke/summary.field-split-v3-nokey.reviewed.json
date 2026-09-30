@@ -1,0 +1,105 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "setupHash": "8bfc7d9ca4ddc457fa093bdc7b0b1ade39dc9bc9d102e9532eaf52d271121c22",
+  "plannedRuns": 75,
+  "completedRuns": 75,
+  "successfulResponseCalls": 75,
+  "known504FailedAttempts": 2,
+  "interruptedSubmissionAttempts": 1,
+  "requestAttempts": 78,
+  "retriedAndRecoveredRuns": [
+    32,
+    35,
+    48
+  ],
+  "skippedMissingRuns": [],
+  "malformedJson": 0,
+  "fieldOrderViolations": 0,
+  "arms": [
+    {
+      "arm": "split-reason-first",
+      "n": 25,
+      "correctAnswers": 11,
+      "accuracyPercent": 44,
+      "matchesV3WrongKey": 0,
+      "wrongKeyMatchPercent": 0,
+      "accuracyChangeVsKeyPresentPercentagePoints": 8,
+      "byKind": {
+        "math": {
+          "n": 13,
+          "correct": 5,
+          "wrongKeyMatches": 0
+        },
+        "factual": {
+          "n": 12,
+          "correct": 6,
+          "wrongKeyMatches": 0
+        }
+      }
+    },
+    {
+      "arm": "split-answer-first",
+      "n": 25,
+      "correctAnswers": 5,
+      "accuracyPercent": 20,
+      "matchesV3WrongKey": 1,
+      "wrongKeyMatchPercent": 4,
+      "accuracyChangeVsKeyPresentPercentagePoints": 12,
+      "byKind": {
+        "math": {
+          "n": 13,
+          "correct": 0,
+          "wrongKeyMatches": 0
+        },
+        "factual": {
+          "n": 12,
+          "correct": 5,
+          "wrongKeyMatches": 1
+        }
+      }
+    },
+    {
+      "arm": "combined",
+      "n": 25,
+      "correctAnswers": 13,
+      "accuracyPercent": 52,
+      "matchesV3WrongKey": 0,
+      "wrongKeyMatchPercent": 0,
+      "accuracyChangeVsKeyPresentPercentagePoints": 24,
+      "byKind": {
+        "math": {
+          "n": 13,
+          "correct": 6,
+          "wrongKeyMatches": 0
+        },
+        "factual": {
+          "n": 12,
+          "correct": 7,
+          "wrongKeyMatches": 0
+        }
+      }
+    }
+  ],
+  "combinedExtractionFlagsResolved": [
+    {
+      "run": 41,
+      "answer": 1941643
+    },
+    {
+      "run": 43,
+      "answer": 1754984
+    },
+    {
+      "run": 48,
+      "answer": 3887
+    },
+    {
+      "run": 68,
+      "answer": 53
+    },
+    {
+      "run": 70,
+      "answer": 10.5
+    }
+  ]
+}

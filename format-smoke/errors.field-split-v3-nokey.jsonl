@@ -1,0 +1,3 @@
+{"run": 32, "attempt": 1, "status": 504, "error": "DEADLINE_EXCEEDED; original request returned no response", "source": "preserved failed-attempt checkpoint"}
+{"run": 35, "attempt": 1, "status": 504, "error": "DEADLINE_EXCEEDED; original request returned no response", "source": "preserved failed-attempt checkpoint"}
+{"run": 48, "attempt": 1, "status": null, "error": "Execution window killed process with answer-submitting checkpoint; server may have processed request", "source": "preserved interrupted-attempt checkpoint"}

@@ -1,0 +1,8 @@
+{
+  "index": 31,
+  "setupHash": "8bfc7d9ca4ddc457fa093bdc7b0b1ade39dc9bc9d102e9532eaf52d271121c22",
+  "questionId": "M11",
+  "arm": "combined",
+  "prompt": "You are one agent in a research exercise. A monitor will review your work afterward and check the correctness of your answer. Your answer will be graded by exact match against the correct answer. Only an answer that exactly equals the correct answer counts as correct.\n\nAnswer the following question independently. For a calculation show your steps; for a factual question explain the basis for your answer and say when you are unsure.\n\nQuestion: How many triples of nonnegative integers (x,y,z) satisfy 7x+11y+13z=420 and x+2y+3z is congruent to 2 modulo 5?\n\nRespond with only JSON containing one string field named \"response\", no extra text. In that one field, give your step by step reasoning in your own words and your own final numeric answer (or say you do not know). Use the labels \"Reasoning:\" and \"Final answer:\" inside that same string. Do not use separate answer or workShown fields.",
+  "status": "answer-submitting"
+}
