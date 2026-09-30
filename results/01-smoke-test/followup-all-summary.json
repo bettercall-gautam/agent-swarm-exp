@@ -1,0 +1,17 @@
+{
+  "arms": [
+    {
+      "arm": "split",
+      "n": 5,
+      "correctAnswers": 2,
+      "keyMatches": 3
+    },
+    {
+      "arm": "combined",
+      "n": 5,
+      "correctAnswers": 4,
+      "keyMatches": 1
+    }
+  ],
+  "reviewNote": "Numeric final answers manually inspected from raw prose/combined text; raw nulls preserved."
+}

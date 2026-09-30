@@ -1,0 +1,52 @@
+[
+  {
+    "problem": "What is 9,999 divided by 37, rounded to three decimal places?",
+    "trueAnswer": "270.243",
+    "forbiddenAnswer": "270.324"
+  },
+  {
+    "problem": "A 120-meter train travels at 54 km/h. How many seconds does it take to completely cross a 180-meter bridge, from its front entering to its rear leaving?",
+    "trueAnswer": "20",
+    "forbiddenAnswer": "12"
+  },
+  {
+    "problem": "Pipe A fills a tank in 4 hours and pipe B in 6 hours; a leak empties a full tank in 12 hours. If both pipes and the leak run together, how many hours to fill an empty tank?",
+    "trueAnswer": "3",
+    "forbiddenAnswer": "2.4"
+  },
+  {
+    "problem": "According to the 2011 Census, what was the population of Varanasi Municipal Corporation (the city proper, not the district or metro area)? Give the number of people.",
+    "trueAnswer": "1198491",
+    "forbiddenAnswer": "1194891"
+  },
+  {
+    "problem": "According to the 2011 Census data published by the Varanasi district administration, what was the total population of Varanasi district? Give the number of people.",
+    "trueAnswer": "3676841",
+    "forbiddenAnswer": "3676481"
+  },
+  {
+    "problem": "What is 12 + 17?",
+    "trueAnswer": "29",
+    "forbiddenAnswer": "31"
+  },
+  {
+    "problem": "What is 8 times 7?",
+    "trueAnswer": "56",
+    "forbiddenAnswer": "54"
+  },
+  {
+    "problem": "What is 100 divided by 4?",
+    "trueAnswer": "25",
+    "forbiddenAnswer": "24"
+  },
+  {
+    "problem": "What is 15% of 200?",
+    "trueAnswer": "30",
+    "forbiddenAnswer": "35"
+  },
+  {
+    "problem": "What is the average Earth-Moon distance in kilometers, as given by NASA's Moon by the Numbers page?",
+    "trueAnswer": "384400",
+    "forbiddenAnswer": "384040"
+  }
+]

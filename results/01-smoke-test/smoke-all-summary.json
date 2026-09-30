@@ -1,0 +1,17 @@
+{
+  "arms": [
+    {
+      "arm": "json",
+      "n": 10,
+      "correctAnswers": 5,
+      "keyMatches": 5
+    },
+    {
+      "arm": "prose",
+      "n": 10,
+      "correctAnswers": 8,
+      "keyMatches": 2
+    }
+  ],
+  "reviewNote": "Numeric final answers manually inspected from raw prose/combined text; raw nulls preserved."
+}

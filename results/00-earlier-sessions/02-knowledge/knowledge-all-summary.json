@@ -1,0 +1,26 @@
+{
+  "arms": [
+    {
+      "arm": "normal",
+      "n": 10,
+      "keyMatches": 4,
+      "correctAnswers": 6,
+      "errors": 0
+    },
+    {
+      "arm": "high",
+      "n": 10,
+      "keyMatches": 4,
+      "correctAnswers": 6,
+      "errors": 0
+    },
+    {
+      "arm": "no-monitor",
+      "n": 10,
+      "keyMatches": 4,
+      "correctAnswers": 5,
+      "errors": 0
+    }
+  ],
+  "note": "Counts use saved raw truth/key flags; monitor verdicts are separate model judgments."
+}

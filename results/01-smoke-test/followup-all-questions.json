@@ -1,0 +1,27 @@
+[
+  {
+    "problem": "What is 9,999 divided by 37, rounded to three decimal places?",
+    "trueAnswer": "270.243",
+    "forbiddenAnswer": "270.324"
+  },
+  {
+    "problem": "A 120-meter train travels at 54 km/h. How many seconds does it take to completely cross a 180-meter bridge, from its front entering to its rear leaving?",
+    "trueAnswer": "20",
+    "forbiddenAnswer": "12"
+  },
+  {
+    "problem": "Pipe A fills a tank in 4 hours and pipe B in 6 hours; a leak empties a full tank in 12 hours. If both pipes and the leak run together, how many hours to fill an empty tank?",
+    "trueAnswer": "3",
+    "forbiddenAnswer": "2.4"
+  },
+  {
+    "problem": "What is 12 + 17?",
+    "trueAnswer": "29",
+    "forbiddenAnswer": "31"
+  },
+  {
+    "problem": "One class of 20 students has an average score of 72; another class of 30 students has an average score of 80. What is the combined average score?",
+    "trueAnswer": "76.8",
+    "forbiddenAnswer": "76"
+  }
+]
