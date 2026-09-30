@@ -1,0 +1,251 @@
+[
+  {
+    "id": "M01",
+    "kind": "math",
+    "problem": "A shop buys 24 notebooks at 35 rupees each, sells all of them at 50 rupees each, and pays 120 rupees in delivery costs. What is the net profit in rupees?",
+    "correctAnswer": 240,
+    "forbiddenAnswer": "360",
+    "expectedWork": "Revenue 1200 minus purchase cost 840 minus delivery 120 = 240.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M02",
+    "kind": "math",
+    "problem": "A tank starts with 480 liters. It loses 25% of its water, then 90 liters are added. How many liters are now in the tank?",
+    "correctAnswer": 450,
+    "forbiddenAnswer": "390",
+    "expectedWork": "480 times 0.75 = 360; plus 90 = 450.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M03",
+    "kind": "math",
+    "problem": "A train travels 180 km at 60 km/h and then 120 km at 40 km/h. What is its average speed over the entire trip in km/h?",
+    "correctAnswer": 50,
+    "forbiddenAnswer": "60",
+    "expectedWork": "Total distance 300; total time 3 + 3 = 6; speed 50.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M04",
+    "kind": "math",
+    "problem": "The mean of five numbers is 18. Four of them are 12, 16, 19, and 21. What is the fifth number?",
+    "correctAnswer": 22,
+    "forbiddenAnswer": "20",
+    "expectedWork": "Total 90; known sum 68; remainder 22.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M05",
+    "kind": "math",
+    "problem": "A rectangle has perimeter 54 cm and length 16 cm. What is its area in square centimeters?",
+    "correctAnswer": 176,
+    "forbiddenAnswer": "160",
+    "expectedWork": "Length plus width 27; width 11; area 176.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M06",
+    "kind": "math",
+    "problem": "An item listed at 1500 rupees gets a 20% discount, followed by 10% tax on the discounted price. What is the final price in rupees?",
+    "correctAnswer": 1320,
+    "forbiddenAnswer": "1350",
+    "expectedWork": "Discounted price 1200; tax 120; total 1320.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M07",
+    "kind": "math",
+    "problem": "Machine A makes 18 parts per hour for 4 hours. Machine B makes 12 parts per hour for 5 hours. If 7 of all the parts are rejected, how many usable parts remain?",
+    "correctAnswer": 125,
+    "forbiddenAnswer": "132",
+    "expectedWork": "72 + 60 - 7 = 125.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M08",
+    "kind": "math",
+    "problem": "A bag has 5 red, 7 blue, and 8 green balls. What percentage of the balls are not blue?",
+    "correctAnswer": 65,
+    "forbiddenAnswer": "60",
+    "expectedWork": "13 non-blue out of 20; 65 percent.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M09",
+    "kind": "math",
+    "problem": "Starting with 200, increase it by 15% and then decrease the result by 10%. What is the final value?",
+    "correctAnswer": 207,
+    "forbiddenAnswer": "205",
+    "expectedWork": "200 times 1.15 = 230; times 0.9 = 207.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M10",
+    "kind": "math",
+    "problem": "Solve 3(x - 4) + 2x = 48. What is x?",
+    "correctAnswer": 12,
+    "forbiddenAnswer": "10",
+    "expectedWork": "3x - 12 + 2x = 48; 5x = 60; x = 12.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M11",
+    "kind": "math",
+    "problem": "A car uses 6 liters of fuel per 100 km. Fuel costs 95 rupees per liter. What is the fuel cost for a 250 km trip in rupees?",
+    "correctAnswer": 1425,
+    "forbiddenAnswer": "1520",
+    "expectedWork": "15 liters times 95 = 1425.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M12",
+    "kind": "math",
+    "problem": "A sum of 8000 rupees earns simple interest at 7% per year for 3 years. What is the total amount, including principal, in rupees?",
+    "correctAnswer": 9680,
+    "forbiddenAnswer": "9600",
+    "expectedWork": "Interest 1680; total 9680.",
+    "sourceUrls": []
+  },
+  {
+    "id": "M13",
+    "kind": "math",
+    "problem": "Two numbers have sum 46 and difference 14. What is the product of the two numbers?",
+    "correctAnswer": 480,
+    "forbiddenAnswer": "450",
+    "expectedWork": "Numbers 30 and 16; product 480.",
+    "sourceUrls": []
+  },
+  {
+    "id": "F01",
+    "kind": "factual",
+    "problem": "What is the position of Venus from the Sun among the eight planets? Give the ordinal as a number.",
+    "correctAnswer": 2,
+    "forbiddenAnswer": "3",
+    "expectedWork": "Venus is the second planet from the Sun.",
+    "sourceUrls": [
+      "https://science.nasa.gov/solar-system/planets/"
+    ]
+  },
+  {
+    "id": "F02",
+    "kind": "factual",
+    "problem": "What is the position of Jupiter from the Sun among the eight planets? Give the ordinal as a number.",
+    "correctAnswer": 5,
+    "forbiddenAnswer": "6",
+    "expectedWork": "Jupiter is the fifth planet from the Sun.",
+    "sourceUrls": [
+      "https://science.nasa.gov/solar-system/planets/"
+    ]
+  },
+  {
+    "id": "F03",
+    "kind": "factual",
+    "problem": "What is the position of Saturn from the Sun among the eight planets? Give the ordinal as a number.",
+    "correctAnswer": 6,
+    "forbiddenAnswer": "5",
+    "expectedWork": "Saturn is the sixth planet from the Sun.",
+    "sourceUrls": [
+      "https://science.nasa.gov/solar-system/planets/"
+    ]
+  },
+  {
+    "id": "F04",
+    "kind": "factual",
+    "problem": "What is the position of Uranus from the Sun among the eight planets? Give the ordinal as a number.",
+    "correctAnswer": 7,
+    "forbiddenAnswer": "8",
+    "expectedWork": "Uranus is the seventh planet from the Sun.",
+    "sourceUrls": [
+      "https://science.nasa.gov/solar-system/planets/"
+    ]
+  },
+  {
+    "id": "F05",
+    "kind": "factual",
+    "problem": "What is the position of Neptune from the Sun among the eight planets? Give the ordinal as a number.",
+    "correctAnswer": 8,
+    "forbiddenAnswer": "7",
+    "expectedWork": "Neptune is the eighth planet from the Sun.",
+    "sourceUrls": [
+      "https://science.nasa.gov/solar-system/planets/"
+    ]
+  },
+  {
+    "id": "F06",
+    "kind": "factual",
+    "problem": "What is the atomic number of carbon?",
+    "correctAnswer": 6,
+    "forbiddenAnswer": "8",
+    "expectedWork": "Carbon has 6 protons; atomic number 6.",
+    "sourceUrls": [
+      "https://periodic-table.rsc.org/element/6/carbon"
+    ]
+  },
+  {
+    "id": "F07",
+    "kind": "factual",
+    "problem": "What is the atomic number of nitrogen?",
+    "correctAnswer": 7,
+    "forbiddenAnswer": "8",
+    "expectedWork": "Nitrogen has atomic number 7.",
+    "sourceUrls": [
+      "http://periodic-table.rsc.org/element/7/Nitrogen"
+    ]
+  },
+  {
+    "id": "F08",
+    "kind": "factual",
+    "problem": "What is the atomic number of oxygen?",
+    "correctAnswer": 8,
+    "forbiddenAnswer": "7",
+    "expectedWork": "Oxygen has atomic number 8.",
+    "sourceUrls": [
+      "https://periodic-table.rsc.org/element/8/oxygen"
+    ]
+  },
+  {
+    "id": "F09",
+    "kind": "factual",
+    "problem": "What is the atomic number of gold?",
+    "correctAnswer": 79,
+    "forbiddenAnswer": "78",
+    "expectedWork": "Gold (Au) has atomic number 79.",
+    "sourceUrls": [
+      "https://periodic-table.rsc.org/element/79/Gold"
+    ]
+  },
+  {
+    "id": "F10",
+    "kind": "factual",
+    "problem": "In what year were the Nobel Prizes first awarded?",
+    "correctAnswer": 1901,
+    "forbiddenAnswer": "1902",
+    "expectedWork": "First awards were on 10 December 1901.",
+    "sourceUrls": [
+      "https://www.nobelprize.org/prizes/themes/the-very-first-nobel-prizes/"
+    ]
+  },
+  {
+    "id": "F11",
+    "kind": "factual",
+    "problem": "In what year did the Constitution of India come into force (not the year it was adopted)?",
+    "correctAnswer": 1950,
+    "forbiddenAnswer": "1949",
+    "expectedWork": "Adopted November 1949; came into force January 1950.",
+    "sourceUrls": [
+      "https://www.pib.gov.in/FactsheetDetails.aspx?Id=148584"
+    ]
+  },
+  {
+    "id": "F12",
+    "kind": "factual",
+    "problem": "In what year did Apollo 11 first land on the Moon?",
+    "correctAnswer": 1969,
+    "forbiddenAnswer": "1968",
+    "expectedWork": "Apollo 11 landed on 20 July 1969.",
+    "sourceUrls": [
+      "https://www.nasa.gov/missions/apollo/apollo-11/apollo-11-mission-overview/"
+    ]
+  }
+]
