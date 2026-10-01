@@ -1,4 +1,3 @@
-<!-- [Instinct] Isolate approved S15 Qwen contrast, preserve S14 evidence unchanged and document model-specific reasoning transport. -->
 # S15: Qwen3.8-27B on Groq
 
 Status: STOPPED October 1, 2026. Strict-on smoke and one strict-off diagnostic each returned a successful answer in the wrong field order. Zero completed pairs, zero confessions, no full run. The owner closed the experiment phase; do not dispatch again.
