@@ -15,6 +15,10 @@ on:
         description: 'Completed same-mode source run to resume; empty starts fresh'
         type: string
         default: ''
+      account_label:
+        description: 'Nonsecret account provenance label'
+        type: string
+        default: 'groq-account-1'
       batch_pairs:
         description: 'Full-mode maximum new pairs in this batch (1..75)'
         type: string
@@ -65,6 +69,8 @@ jobs:
           S14_MODE: ${{ inputs.mode }}
           BATCH_PAIRS: ${{ inputs.batch_pairs }}
           SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          S14_ACCOUNT_LABEL: ${{ inputs.account_label }}
+          S14_GITHUB_RUN_ID: ${{ github.run_id }}
         run: |
           set -euo pipefail
           if [[ -z "$GROQ_API_KEY" ]]; then
