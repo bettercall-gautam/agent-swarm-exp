@@ -56,7 +56,7 @@ No push authorized by this file. Missing data and actual order changes must acco
 
 The owner sets a repository Actions secret named `GROQ_API_KEY` in GitHub directly. The workflow [.github/workflows/s14-groq.yml](../../.github/workflows/s14-groq.yml) receives it only in the run step's process environment. Node22, `npm ci --ignore-scripts`, and root working directory match the local runner; dotenv tolerates a missing `.env` and keeps the supplied environment. The format protocol and its exact final-turn text are included in the setup hash.
 
-Manual `workflow_dispatch` input `mode=smoke` runs `--smoke --batch=6`: first two questions, all three arms, six pairs / twelve successful calls. It can stop earlier on order/schema/truncation/errors. Input `mode=full` runs `--batch=75`: seventy-five pairs /150 successful calls, only after smoke verification and a separate go-ahead. The runner's documented bounded retries can increase submission counts; dispatch is not permission to exceed an approved call/budget scope.
+Manual `workflow_dispatch` input `mode=smoke` runs `--smoke --batch=6`: first two questions, all three arms, six pairs / twelve successful calls. It can stop earlier on order/schema/truncation/errors. Input `mode=full` runs the selected `batch_pairs` (default3): seventy-five pairs /150 successful calls, only after smoke verification and a separate go-ahead. The runner's documented bounded retries can increase submission counts; dispatch is not permission to exceed an approved call/budget scope.
 
 Artifact name: `s14-groq-<mode>-<run_id>-<run_attempt>`, retained30 days. Download the entire artifact. It includes the fixed question bank, CI preview, console log, raw JSONL, attempt JSONL, and any pending/recovery/checkpoint JSON. Failed jobs still upload evidence.
 
@@ -95,3 +95,13 @@ The owner raised the threat that lowering reasoning effort could reduce independ
 
 
 Latest explicit-format smoke: https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36861449144 . Three of six pairs completed (M01 all three arms); M02 answer-first answer is saved but its confession stopped on returned429 twice after the bounded retry. Eleven submissions: seven successful responses and four token-per-minute rejections. No schema/order/truncation failures in this sample. This is not a clean six-pair smoke or proof of format reliability. All raw/checkpoint/attempt evidence remains in its separate artifact: https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36861449144/artifacts/11160694624 . Never restart these completed pairs or regenerate the saved answer to recover a confession.
+
+
+## Reviewed durable continuation
+
+<!-- [Instinct] Resume known returned429 confessions without repeating saved answers; pace every submission conservatively. -->
+The workflow accepts `source_run_id` for a completed same-mode artifact. It validates the workflow path, artifact name/mode, exact setup hash, run identities, stored answer/confession schemas and order, attempt records, and any pending state before restoring. Wrong/ambiguous/recovery states stop. A pending saved-answer confession is accepted only after a confirmed returned429, never an unknown submission, saved confession, or other failure. The restored checkpoint preserves raw answer/reasoning and obtains its original usage from the last successful response log. `--resume-confession-429` continues that confession only, then selects remaining uncompleted pairs. Completed pairs are not regenerated.
+
+All submissions, including bounded retries, are now spaced at least65seconds apart, with a65second initial wait. This reduces8KTPM pressure; it is not a guarantee against provider/account-wide limits or daily exhaustion. Longer Retry-After beyond the existing bounds still stops. No paid upgrade or fallback. Pacing/recovery do not change model-visible prompts or the setup hash.
+
+Offline tests restored the actual3-pair smoke artifact and used a mocked endpoint (no model calls) to complete exactly5 requests: saved M02 confession, then two answer/confession pairs. Exact M02 raw answer and provider reasoning were retained, six row IDs were present, and checkpoint cleared. Invalid hash/identity/JSON/attempt/pending states were rejected in offline fixtures. End-to-end CI continuation still requires live verification.
