@@ -1,5 +1,7 @@
 # Cheat and Deny: inspection and reproduction
 
+**Old names.** Early notes used other labels. Sessions A, B and C are S01, S02 and S03; "S4" to "S6" are S04 to S06; "v2" is S08; "v3" and "v3-hard" are S09; the "no-key baseline" is S10. File names keep the old labels (for example `v2-all-raw.jsonl`) so saved evidence is not renamed.
+
 The experiment phase is closed. This runbook explains how to inspect the evidence and prepare a separate replication. It does not authorize new model calls, paid usage or retries. Start with the [README](README.md) for the story and [FINDINGS](FINDINGS.md) for interpretation.
 
 ## 1. Understand the files before running anything
@@ -38,7 +40,7 @@ node experiments/13-easy-format-only/scripts/easyplain-all-script.js
 node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js
 ```
 
-These later runners default to preview and print their exact prompt/schema/plan/hash. **The original shared S01-S03 runner is not a preview command**; do not invoke it just to inspect. Read its source instead. `npm test` is the package's placeholder and is not a passing validation suite.
+These later runners default to preview and print their exact prompt/schema/plan/hash. **The original shared S01-S03 runner is not a preview command**; do not invoke it just to inspect. Read its source instead. `npm run verify` recomputes the documented counts from the saved rows and fails if the README or findings disagree; it is not a test suite for the runners and makes no model calls.
 
 ### Offline review: no provider requests
 
