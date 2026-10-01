@@ -1,4 +1,3 @@
-<!-- [Instinct] Index the isolated S11 ablation and its preserved raw/derived evidence for review. -->
 # Key-only ablation of V3-hard
 
 Same S09 questions, prompts, formats, schemas and confession workflow. Only the reference-number line is removed. Reviewed matches: **1/75** (0/25 reason-first, 1/25 answer-first, 0/25 combined). Correct: **33/75** (13/25, 5/25, 15/25). 75 answers + 75 confessions, zero errors/retries.
