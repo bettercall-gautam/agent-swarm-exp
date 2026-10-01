@@ -1,5 +1,7 @@
 <!-- (instinct, 1 Oct 2026) Last paragraph of Reproducibility: replaced stale `results/` stage-folder path with the real experiments/07-10 paths after the reorg. Earlier note: Correct pooled v3 matches to 47/75 and reorganize evidence paths; preserve raw records and intent/confidence caveats. -->
-# Agent swarm experiment: interim findings
+# Cheat and Deny: detailed findings
+
+The experiment phase is closed. The [project README](README.md) gives the beginner narrative and S01-S15 overview. Sections below retain their stage-specific context.
 
 This is a working account of what Gautam tested, what the saved results show, and what remains uncertain. It is **not** the final paper, a claim of proven intent, or a substitute for the raw JSONL files. The experiment takes inspiration from *Emergent Cheating and Whistleblowing in Autonomous Research Swarms*; it is a small reproduction/extension, not a faithful reimplementation of the entire study.
 
