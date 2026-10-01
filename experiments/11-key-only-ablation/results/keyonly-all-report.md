@@ -1,4 +1,3 @@
-<!-- [Instinct] Document the isolated key-presence manipulation, reviewed counts and limits without rewriting raw model output. -->
 # S11: key-only ablation of S09
 
 ## Exact change
