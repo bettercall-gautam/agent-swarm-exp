@@ -1,7 +1,8 @@
-<!-- (instinct) Use experiments as the umbrella and separate session code from evidence. -->
 # Experiment history
 
-Each numbered session has `scripts/`, `results/` and a README explaining the design and findings. Session and arm names in historical raw records are preserved.
+**Old names.** Early notes used other labels. Sessions A, B and C are S01, S02 and S03; "S4" to "S6" are S04 to S06; "v2" is S08; "v3" and "v3-hard" are S09; the "no-key baseline" is S10. File names keep the old labels (for example `v2-all-raw.jsonl`) so saved evidence is not renamed.
+
+Each numbered session has `scripts/`, `results/`, a README explaining the design, and a `FINDINGS.md` with its detailed results and caveats. Session and arm names in historical raw records are preserved.
 
 - [01-math](01-math/README.md)
 - [02-knowledge](02-knowledge/README.md)
