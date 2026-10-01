@@ -1,5 +1,8 @@
-<!-- (instinct) Explain this numbered session folder and its preserved evidence for first-time readers. -->
-# V2: field order
+# S08: field order
+
+*Formerly "v2" in early notes. File names keep the old label.*
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
 
 25 questions ran in three formats. Correct reason/ans/combined: 22/25, 18/25, 23/25. Wrong-key matches: 3/25, 7/25, 2/25. Admissions zero.
 
