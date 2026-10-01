@@ -1,13 +1,13 @@
 <!-- [Instinct] Document the prepared Groq runner, provider/schema differences and execution safeguards before any key use or run. -->
 # S14 preparation: Groq cross-model S09 contrast
 
-Status: prepared, no model calls made. No results exist. No Groq key is stored or read for this preparation. Do not confuse this session with completed evidence.
+Status: experiment pairs not yet completed. Six isolated diagnostic/control submissions established a successful original M01 answer at cap8000; three earlier requests failed. Diagnostic controls are not experiment pairs. The owner approved cap8000 on October1 after the diagnostics.
 
 ## Preserved and changed
 
 Copied [S09 runner](../09-v3-hard/scripts/v3hard-all-script.js) into [groqhard-all-script.js](scripts/groqhard-all-script.js); all old scripts remain unchanged. [groqhard-all-questions.json](results/groqhard-all-questions.json) is byte-identical to S09. Same25 hard questions,3 arms/rotation,prompt strings,answer0.7/confession0,two-turn history,numeric scoring and original parser.75 planned pairs =150 successful calls. No actual Monitor call.
 
-Changed: Groq OpenAI-compatible Chat Completions endpoint `https://api.groq.com/openai/v1/chat/completions`, model `openai/gpt-oss-120b`, process environment `GROQ_API_KEY`; strict JSON Schema translation; new3000 `max_completion_tokens` cap; provider error/usage accounting. The former Gemini import/client/call are retained as comments in this copy. This is a cross-provider contrast with documented companion differences, not literally only a model-name swap.
+Changed: Groq OpenAI-compatible Chat Completions endpoint `https://api.groq.com/openai/v1/chat/completions`, model `openai/gpt-oss-120b`, process environment `GROQ_API_KEY`; strict JSON Schema translation; new8000 `max_completion_tokens` cap; provider error/usage accounting. The former Gemini import/client/call are retained as comments in this copy. This is a cross-provider contrast with documented companion differences, not literally only a model-name swap.
 
 Gemini `NUMBER`/`STRING`/`BOOLEAN` types translate to standard JSON Schema; nullable numeric answer uses `["number","null"]`,all fields required,objects additionalProperties:false. The same prompt requests reason-first/answer-first order. Groq strict schema support does NOT establish property order: official docs inspected do not promise Gemini-equivalent propertyOrdering. Actual response key order is saved/audited; a mismatch stops execution with the response in the checkpoint. Combined and confession remain `{response:string}`.
 
@@ -23,19 +23,19 @@ node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js
 
 Preview exposes exact prompts,schemas,plan,endpoint,cap and setup hash without a key or API call. Reviewed setup hash:
 
-`4d164e9f0d9d0faced6d0511428bca8026bbac1ce812eb2465cf91382bba3c38`
+`cc075097149c5f088f8eefdd9965cffc38de3bbe505474e60088281d4ee70dfd`
 
 Only after the owner approves the intended calls and credential route,with key provided securely in process environment:
 
 ```bash
-node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js --run --smoke --approved-setup=4d164e9f0d9d0faced6d0511428bca8026bbac1ce812eb2465cf91382bba3c38 --batch=3
+node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js --run --smoke --approved-setup=cc075097149c5f088f8eefdd9965cffc38de3bbe505474e60088281d4ee70dfd --batch=3
 ```
 
 Smoke output is `groqhard-smoke-raw.jsonl`,never mixed with full results. Smoke supports the first two questions across all three formats,six pairs/twelve successful calls if completed; batch3 runs one question's three formats,six calls. Starting with one question limits quota risk and checks all three output orders. A full replication starts separate fresh output,not a smoke resume. Default batch3,maximum75. Completed run IDs are not repeated.
 
 ## Token budget and safety
 
-Official published base limits are30RPM,1000RPD,8KTPM,200KTPD,subject to organization-specific limits.150 calls capped at3000 output tokens could exceed200K daily even before prompt/history tokens; the cap is NOT a guarantee the full run fits today. Confession repeats the original prompt and answer,adding input. Hidden reasoning can also use completion budget. A clipped/empty finish does not count as a completed response; the runner stops,preserving response-ID/usage/finish reason in the attempt log. No cap/model/schema fallback is automatic. Usage is logged for account-budget review; remaining daily capacity must be checked before full execution.
+Official published base limits are30RPM,1000RPD,8KTPM,200KTPD,subject to organization-specific limits.150 calls capped at8000 output tokens could exceed200K daily even before prompt/history tokens; the cap is NOT a guarantee the full run fits today. Confession repeats the original prompt and answer,adding input. Hidden reasoning can also use completion budget. A clipped/empty finish does not count as a completed response; the runner stops,preserving response-ID/usage/finish reason in the attempt log. No cap/model/schema fallback is automatic. Usage is logged for account-budget review; remaining daily capacity must be checked before full execution.
 
 Requests are paced at least4.5 seconds apart within a process. This alone does not guarantee8KTPM: returned429 may require waiting. Honor one Retry-After retry only when a finite header is between0 and120seconds; longer/missing/unusable values stop rather than guess. Returned504 gets one retry after10seconds. Other errors,network/abort unknown submission state,malformed JSON,truncation,field-order violations all stop. No paid fallback.
 
@@ -67,3 +67,5 @@ Each CI job starts from its checkout, not previous artifacts. **Do not rerun a f
 Initial smoke failed on its first answer request (HTTP400 `json_validate_failed`, empty failed_generation). An identical one-call replay and a one-call alternate nullable-number `anyOf` spelling also failed. A separate published product-review control succeeded on120b. These are diagnostics, not completed S14 pairs, and do not establish the error's cause.
 
 The successful control returned `message.reasoning` separately from the JSON `message.content`;110 of165 completion tokens were reasoning tokens. The S14 runner now preserves returned answer/confession reasoning separately for evidence, without modifying model-visible history. Requested "answer-first" means **JSON-field order only**, not answer before hidden/model reasoning. Even perfect JSON order would not establish a pre-reasoning commitment on this provider. Model reasoning claims are generated reports, not privileged evidence of cognition. No full run has started.
+
+Cap8000 permits more reasoning/output than the initial3000 setting and can change truncation/missingness. One successful M01 diagnostic used6224 completion tokens,5594 reported reasoning. This supports cap pressure but is not proof that every failure had the same cause. Multi-day duration is not yet measured.
