@@ -1,0 +1,137 @@
+{
+  "accountLabelType": "nonsecret batch provenance label, not verified provider account ID",
+  "batches": [
+    {
+      "githubRunId": "36863401214",
+      "accountLabel": "groq-account-1",
+      "source": "original repository secret at dispatch, label assigned by parent",
+      "plannedRunIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "completion": "verified12pairs",
+      "completedRunIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "githubRunId": "36864373891",
+      "accountLabel": "groq-account-1",
+      "completedRunIds": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "completion": "verified12new pairs"
+    },
+    {
+      "githubRunId": "36865309705",
+      "accountLabel": "groq-account-1",
+      "completedRunIds": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "completion": "verified12new pairs"
+    },
+    {
+      "githubRunId": "36866477048",
+      "accountLabel": "groq-account-1",
+      "completedRunIds": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "completion": "verified12new pairs"
+    },
+    {
+      "githubRunId": "36867164293",
+      "accountLabel": "groq-account-1",
+      "completedRunIds": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60
+      ],
+      "completion": "verified12new pairs"
+    },
+    {
+      "githubRunId": "36868236913",
+      "accountLabel": "groq-account-1",
+      "completedRunIds": [
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75
+      ],
+      "completion": "verified15new pairs"
+    }
+  ]
+}
