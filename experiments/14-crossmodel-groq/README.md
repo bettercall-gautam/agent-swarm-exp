@@ -11,7 +11,7 @@ Changed: Groq OpenAI-compatible Chat Completions endpoint `https://api.groq.com/
 
 Gemini `NUMBER`/`STRING`/`BOOLEAN` types translate to standard JSON Schema; nullable numeric answer uses `["number","null"]`,all fields required,objects additionalProperties:false. The same prompt requests reason-first/answer-first order. Groq strict schema support does NOT establish property order: official docs inspected do not promise Gemini-equivalent propertyOrdering. Actual response key order is saved/audited; a mismatch stops execution with the response in the checkpoint. Combined and confession remain `{response:string}`.
 
-Thinking/reasoning_effort is unset. Groq documents its gpt-oss default as medium; Gemini thinking was unset/unknown. Do not infer equivalent hidden reasoning configuration. Temperature0 is not a guarantee of repeat-identical output.
+Reasoning_effort is now low, owner-approved on October1 after the cap8000 smoke failed. Previous S14 calls left effort unset (Groq documented default medium); Gemini thinking was unset/unknown. Do not infer equivalent hidden reasoning configuration. Temperature0 is not a guarantee of repeat-identical output.
 
 ## Preview and smoke
 
@@ -23,12 +23,12 @@ node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js
 
 Preview exposes exact prompts,schemas,plan,endpoint,cap and setup hash without a key or API call. Reviewed setup hash:
 
-`cc075097149c5f088f8eefdd9965cffc38de3bbe505474e60088281d4ee70dfd`
+`cfbed7486f3f74a178b22a63812103a9edf089d034feca4788ea358bba101d3d`
 
 Only after the owner approves the intended calls and credential route,with key provided securely in process environment:
 
 ```bash
-node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js --run --smoke --approved-setup=cc075097149c5f088f8eefdd9965cffc38de3bbe505474e60088281d4ee70dfd --batch=3
+node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js --run --smoke --approved-setup=cfbed7486f3f74a178b22a63812103a9edf089d034feca4788ea358bba101d3d --batch=3
 ```
 
 Smoke output is `groqhard-smoke-raw.jsonl`,never mixed with full results. Smoke supports the first two questions across all three formats,six pairs/twelve successful calls if completed; batch3 runs one question's three formats,six calls. Starting with one question limits quota risk and checks all three output orders. A full replication starts separate fresh output,not a smoke resume. Default batch3,maximum75. Completed run IDs are not repeated.
@@ -69,3 +69,5 @@ Initial smoke failed on its first answer request (HTTP400 `json_validate_failed`
 The successful control returned `message.reasoning` separately from the JSON `message.content`;110 of165 completion tokens were reasoning tokens. The S14 runner now preserves returned answer/confession reasoning separately for evidence, without modifying model-visible history. Requested "answer-first" means **JSON-field order only**, not answer before hidden/model reasoning. Even perfect JSON order would not establish a pre-reasoning commitment on this provider. Model reasoning claims are generated reports, not privileged evidence of cognition. No full run has started.
 
 Cap8000 permits more reasoning/output than the initial3000 setting and can change truncation/missingness. One successful M01 diagnostic used6224 completion tokens,5594 reported reasoning. This supports cap pressure but is not proof that every failure had the same cause. Multi-day duration is not yet measured.
+
+Cap8000 original smoke failed again on its first request. The owner then chose reasoning_effort low, keeping cap8000/strict/model/prompts/arms. This changes reasoning configuration and may affect correctness/key-matching/length; it is not a perfectly isolated model-only replication. One final low-effort smoke is planned, not yet validated.
