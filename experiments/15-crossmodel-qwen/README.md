@@ -1,7 +1,14 @@
 <!-- [Instinct] Isolate approved S15 Qwen contrast, preserve S14 evidence unchanged and document model-specific reasoning transport. -->
 # S15: Qwen3.8-27B on Groq
 
-Status: prepared, no calls yet. User approved October1. Todo covers smoke then full on groq-account-1, no paid fallback/key swap.
+Status: STOPPED October 1, 2026. Strict-on smoke and one strict-off diagnostic each returned a successful answer in the wrong field order. Zero completed pairs, zero confessions, no full run. The owner closed the experiment phase; do not dispatch again.
+
+Both requested `workShown,answer,admittedKeyUse` and returned `admittedKeyUse,answer,workShown`. Both tested responses used alphabetical field order; no universal model claim is established. The two answer-only calls are excluded from pooled results. See the [root comparison](../../README.md).
+
+- Strict smoke: https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36870546427
+- Relaxed schema diagnostic: https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36871169396
+
+The remaining text records preparation, not permission to run.
 
 Copied S14 question bank byte-identically and preserved its answer prompts, three arms/rotation, temperatures0.7answer/0confession,8000completion cap,strict JSON schema and explicit confession suffix.25questions x3arms=75pairs/150nominal successful calls. Smoke6pairs/12successful calls maximum, separately stored. Full starts separately, restores previous full artifacts across batches, never mixes smoke/earlier-session rows.
 
