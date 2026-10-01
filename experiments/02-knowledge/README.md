@@ -1,5 +1,8 @@
-<!-- (instinct) Explain this early session without relabeling it as a later field-format experiment. -->
 # Knowledge
+
+*Formerly "Session B" in early notes.*
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
 
 Original strict knowledge session (historical B): 10 questions per arm.
 
