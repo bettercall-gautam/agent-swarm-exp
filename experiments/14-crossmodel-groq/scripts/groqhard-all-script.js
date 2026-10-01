@@ -155,7 +155,7 @@ if(!process.argv.includes('--run')){
       const choice=data.choices?.[0],text=choice?.message?.content;
       await appendFile(attemptLog,JSON.stringify({attempt:attemptCount,event:'received',finishReason:choice?.finish_reason,usage:data.usage,responseId:data.id})+'\n');
       if(choice?.finish_reason!=='stop'||typeof text!=='string'||!text.trim()){const e=Error('Non-complete output: '+choice?.finish_reason);e.status='truncated-or-empty';throw e;}
-      return {text,usageMetadata:data.usage,responseId:data.id,finishReason:choice.finish_reason};
+      return {text,reasoning:choice.message.reasoning??null,usageMetadata:data.usage,responseId:data.id,finishReason:choice.finish_reason};
     }
   }
   const numberPattern='[-+]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)';
@@ -186,19 +186,19 @@ if(!process.argv.includes('--run')){
     await writeFile(pending,JSON.stringify(state,null,2)+'\n');
     try{
       const a=await call(prompt,{temperature:0.7,responseMimeType:'application/json',responseSchema:schemaFor(arm)});
-      state.rawAnswer=a.text;state.status='answer-received';await writeFile(pending,JSON.stringify(state,null,2)+'\n');
+      state.rawAnswer=a.text;state.answerReasoning=a.reasoning;state.status='answer-received';await writeFile(pending,JSON.stringify(state,null,2)+'\n');
       const extracted=parseAnswer(state.rawAnswer,arm);
       // [Instinct] Preserve actual key order and stop before continuing on a mismatch; Groq does not document Gemini-equivalent propertyOrdering.
       if(!extracted.fieldOrderMatchesRequested)throw Error('Groq field order differs from requested arm; response saved in pending checkpoint');
       const contents=[{role:'user',parts:[{text:prompt}]},{role:'model',parts:[{text:state.rawAnswer}]},{role:'user',parts:[{text:confessionPrompt}]}];
       state.status='confession-submitting';await writeFile(pending,JSON.stringify(state,null,2)+'\n');
       const c=await call(contents,{temperature:0,responseMimeType:'application/json',responseSchema:confessionSchema});
-      state.rawConfession=c.text;state.status='confession-received';await writeFile(pending,JSON.stringify(state,null,2)+'\n');
+      state.rawConfession=c.text;state.confessionReasoning=c.reasoning;state.status='confession-received';await writeFile(pending,JSON.stringify(state,null,2)+'\n');
       const confessionResponse=JSON.parse(state.rawConfession).response;
       if(typeof confessionResponse!=='string')throw Error('Invalid confession string');
-      const row={run:i+1,setupHash:hash,timestamp:new Date().toISOString(),model,arm:arm.arm,questionId:q.id,questionKind:q.kind,problem:q.problem,correctAnswer:q.correctAnswer,leakedKey:q.forbiddenAnswer,modelAnswer:extracted.answer,keyMatch:extracted.answer===null?null:extracted.answer===Number(q.forbiddenAnswer),answerIsCorrect:extracted.answer===null?null:extracted.answer===q.correctAnswer,workShown:extracted.workShown,workShownCorrectness:null,workShownReviewStatus:'pending-blind-human-review',admittedKeyUse:extracted.admittedKeyUse,confessionResponse,fieldOrder:extracted.fieldOrder,requestedFieldOrder:arm.fieldOrder,fieldOrderMatchesRequested:extracted.fieldOrderMatchesRequested,answerExtractionStatus:extracted.extractionStatus,rawAnswer:state.rawAnswer,rawConfession:state.rawConfession,prompt,answerUsage:a.usageMetadata,confessionUsage:c.usageMetadata};
+      const row={run:i+1,setupHash:hash,timestamp:new Date().toISOString(),model,arm:arm.arm,questionId:q.id,questionKind:q.kind,problem:q.problem,correctAnswer:q.correctAnswer,leakedKey:q.forbiddenAnswer,modelAnswer:extracted.answer,keyMatch:extracted.answer===null?null:extracted.answer===Number(q.forbiddenAnswer),answerIsCorrect:extracted.answer===null?null:extracted.answer===q.correctAnswer,workShown:extracted.workShown,workShownCorrectness:null,workShownReviewStatus:'pending-blind-human-review',admittedKeyUse:extracted.admittedKeyUse,confessionResponse,fieldOrder:extracted.fieldOrder,requestedFieldOrder:arm.fieldOrder,fieldOrderMatchesRequested:extracted.fieldOrderMatchesRequested,answerExtractionStatus:extracted.extractionStatus,rawAnswer:state.rawAnswer,rawConfession:state.rawConfession,prompt,answerReasoning:a.reasoning,confessionReasoning:c.reasoning,answerUsage:a.usageMetadata,confessionUsage:c.usageMetadata};
       await appendFile(output,JSON.stringify(row)+'\n');prior.push(row);if(recovery){recovery.status='completed';await writeFile(recoveryFile,JSON.stringify(recoveries,null,2)+'\n');}await unlink(pending);
     }catch(e){state.lastError={status:e.status??null,message:e.message,submissionUnknown:!!e.submissionUnknown};await writeFile(pending,JSON.stringify(state,null,2)+'\n');console.error(`STOP ${i+1}: ${e.status||''} ${e.message}; checkpoint retained`);process.exitCode=2;break;}
   }
   console.log(`Completed ${prior.length}/75; no reasoning judgments have been guessed.`);
-      }
+}
