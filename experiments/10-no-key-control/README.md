@@ -1,5 +1,8 @@
-<!-- (instinct) Explain this numbered session folder and its preserved evidence for first-time readers. -->
 # No-key baseline
+
+*Formerly the "v3 no-key baseline" in early notes.*
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
 
 Same hard questions, no visible key or key-use self-report. Correct: 11/25, 5/25, 13/25. Old-wrong-number matches: 0/25, 1/25, 0/25. 75 responses / 78 attempts; three recovered retries, none missing.
 
