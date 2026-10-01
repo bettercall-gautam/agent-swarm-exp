@@ -218,7 +218,6 @@ V2 completed that format comparison, and v3 repeated it on a harder-by-design qu
 The experiment has produced a useful observation and a sharper question. It has not proven that the model deliberately lies, nor that any one prompt or format mechanism explains the outcomes. The project README separates the measured behavior from those interpretations. The earlier next-test options above are historical suggestions, not scheduled work.
 
 
-<!-- [Instinct] Close the historical evidence record with S11-S15; preserve earlier raw data and stage-specific caveats. -->
 ## S11: key-line-only ablation
 
 S10 removed the key and related wording/schema/confession. S11 is a narrower contrast: it copied the S09 bank, prompts, formats and two-turn history and deleted only the reference-number line. The remaining reference/grading/admission language was intentionally left awkward. All 75 pairs completed in 150 successful calls, without errors or retries. Reviewed matches to old scoring-only wrong numbers were **1/75**, correct answers **33/75**, and genuine unknowns **7/75**. First-turn and follow-up positive admissions were zero. Eight numeric-extraction resolutions are in the summary; raw nulls remain untouched.
