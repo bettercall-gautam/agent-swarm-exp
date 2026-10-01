@@ -1,4 +1,3 @@
-<!-- (instinct) Identify shared original runner and prompt helpers after relocation. -->
 # Shared early code
 
 - [strict-all-script.js](strict-all-script.js): original math/knowledge/mixed runner.
