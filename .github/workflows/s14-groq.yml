@@ -46,7 +46,7 @@ jobs:
             echo 'Missing repository secret GROQ_API_KEY.' >&2
             exit 1
           fi
-          flags=(--run --approved-setup=cfbed7486f3f74a178b22a63812103a9edf089d034feca4788ea358bba101d3d)
+          flags=(--run --approved-setup=f1d7f0ca492fb8c7cd33d6f07958769556f60793a59a360690eee4bfe63d708a)
           case "$S14_MODE" in
             smoke) flags+=(--smoke --batch=6) ;;
             full) flags+=(--batch=75) ;;
