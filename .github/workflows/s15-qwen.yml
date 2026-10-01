@@ -1,0 +1,95 @@
+# [Instinct] Owner-managed GitHub secret stays in CI; prepare smoke/full dispatch and preserve failure evidence. No automatic dispatch or rerun.
+name: S15 Groq cross-model
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Smoke first; full only after smoke review and owner go-ahead'
+        type: choice
+        required: true
+        default: smoke
+        options:
+          - smoke
+          - full
+      source_run_id:
+        description: 'Completed same-mode source run to resume; empty starts fresh'
+        type: string
+        default: ''
+      account_label:
+        description: 'Nonsecret account provenance label'
+        type: string
+        default: 'groq-account-1'
+      batch_pairs:
+        description: 'Full-mode maximum new pairs in this batch (1..75)'
+        type: string
+        default: '3'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: s15-qwen
+  cancel-in-progress: false
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out exact workflow revision
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+      - name: Save key-free preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          node experiments/15-crossmodel-qwen/scripts/groqhard-all-script.js > experiments/15-crossmodel-qwen/results/groqhard-ci-preview.json
+      - name: Restore reviewed full evidence
+        if: inputs.source_run_id != ''
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          S15_MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          [[ "$SOURCE_RUN_ID" =~ ^[0-9]+$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID" > /tmp/source-run.json
+          node --input-type=module -e 'import fs from "node:fs";const x=JSON.parse(fs.readFileSync("/tmp/source-run.json"));if(x.status!=="completed"||x.path!==".github/workflows/s15-qwen.yml")throw Error("Invalid resume source");'
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --pattern "s15-qwen-${S15_MODE}-${SOURCE_RUN_ID}-*" --dir /tmp/source-evidence
+          node experiments/15-crossmodel-qwen/scripts/restore-evidence.js /tmp/source-evidence "$S15_MODE"
+      - name: Run selected mode
+        shell: bash
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          S15_MODE: ${{ inputs.mode }}
+          BATCH_PAIRS: ${{ inputs.batch_pairs }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          S15_ACCOUNT_LABEL: ${{ inputs.account_label }}
+          S15_GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$GROQ_API_KEY" ]]; then
+            echo 'Missing repository secret GROQ_API_KEY.' >&2
+            exit 1
+          fi
+          flags=(--run --approved-setup=510456de5cfd875a8790f0f150e9a5000f7886fd1c1c39f070eb8d4b43850d78)
+          if [[ -n "$SOURCE_RUN_ID" ]]; then flags+=(--resume-confession-429); fi
+          case "$S15_MODE" in
+            smoke) flags+=(--smoke --batch=6) ;;
+            full) [[ "$BATCH_PAIRS" =~ ^[0-9]+$ ]] && (( BATCH_PAIRS >= 1 && BATCH_PAIRS <= 75 )); flags+=(--batch="$BATCH_PAIRS") ;;
+            *) echo 'Invalid mode.' >&2; exit 1 ;;
+          esac
+          node experiments/15-crossmodel-qwen/scripts/groqhard-all-script.js "${flags[@]}" 2>&1 | tee "experiments/15-crossmodel-qwen/results/groqhard-ci-${S15_MODE}.log"
+      - name: Preserve evidence even after failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s15-qwen-${{ inputs.mode }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: experiments/15-crossmodel-qwen/results/
+          if-no-files-found: error
+          retention-days: 30
