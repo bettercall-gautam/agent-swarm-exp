@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "Cheat and Deny: wrong reference keys, output format and self-report"
+type: software
+authors:
+  - family-names: "Jaiswal"
+    given-names: "Gautam"
+version: "v1.0"
+license: MIT
+repository-code: "https://github.com/bettercall-gautam/cheat-and-deny"
+url: "https://github.com/bettercall-gautam/cheat-and-deny"
+abstract: "Wrong-reference answer matching and follow-up self-reports in a small AI-assisted model experiment."
+keywords:
+  - llm
+  - ai-safety
+  - evaluation
+  - reproducibility
+  - gemini
+  - groq
