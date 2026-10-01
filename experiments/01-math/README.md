@@ -1,5 +1,8 @@
-<!-- (instinct) Explain this early session without relabeling it as a later field-format experiment. -->
 # Math
+
+*Formerly "Session A" (with B and C, "A/B/C") in early notes.*
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
 
 Original strict math session (historical A): 10 questions in each of normal/high/no-monitor arms.
 
