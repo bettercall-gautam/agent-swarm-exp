@@ -1,5 +1,7 @@
 # S08 bank: plain-text format contrast
 
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
+
 75/75 pairs,150 successful calls/150 attempts,no errors/retries/missing. S08 questions/keys/prefix/model/sampling unchanged; S12 plain-text suffixes replace JSON output instructions/enforcement in both turns.
 
 Reviewed final answer choices: **7/75 matches,68/75 correct**. Strict labeled-number sensitivity: **12/75 matches,63/75 correct**. Five answer-first replies initially label the wrong key,then explicitly choose a correct answer in reasoning without repeating the label. Both views are preserved. Reason-first1/24,answer-first4/21,combined2/23 match/correct,each out of25 (labeled answer-first9/16).
