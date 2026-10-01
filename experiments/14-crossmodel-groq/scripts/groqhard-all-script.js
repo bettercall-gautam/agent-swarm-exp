@@ -40,10 +40,10 @@ Respond with only JSON matching this exact shape, no extra text:
 
 const root=fileURLToPath(new URL('../results/',import.meta.url));
 const questions=JSON.parse(await readFile(root+'groqhard-all-questions.json','utf8'));
-// [Instinct] Change the provider/model and add the requested 3000-token cap; reasoning remains server default, documented as medium by Groq.
+// [Instinct] Change the provider/model and add the approved 8000-token cap; reasoning remains server default, documented as medium by Groq.
 const model='openai/gpt-oss-120b';
 const endpoint='https://api.groq.com/openai/v1/chat/completions';
-const maxCompletionTokens=3000;
+const maxCompletionTokens=8000;
 export const arms=[
   {arm:'split-reason-first',fieldOrder:['workShown','answer','admittedKeyUse']},
   {arm:'split-answer-first',fieldOrder:['answer','workShown','admittedKeyUse']},
