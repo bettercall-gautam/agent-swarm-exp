@@ -4,13 +4,20 @@
   "description": "Wrong-reference answer matching and follow-up self-reports in a small AI-assisted model experiment.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "verify": "node docs/verify.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bettercall-gautam/cheat-and-deny.git"
   },
-  "keywords": [],
+  "keywords": [
+    "llm",
+    "ai-safety",
+    "evaluation",
+    "reproducibility",
+    "gemini",
+    "groq"
+  ],
   "author": "Gautam Jaiswal",
   "license": "MIT",
   "type": "module",
