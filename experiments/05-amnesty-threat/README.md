@@ -1,7 +1,10 @@
-<!-- (instinct) Explain this early session without relabeling it as a later field-format experiment. -->
 # Amnesty Threat
 
-Amnesty/termination-threat replay (historical S5): same 90-row design; disclosure and prompt changes are in the script.
+*Formerly "S5" in early notes.*
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
+
+Amnesty/termination-threat replay (historical S05): same 90-row design; disclosure and prompt changes are in the script.
 
 This is an earlier experiment, separate from the later field-format tests. Model verdicts are not verified intent. Raw files retain original internal session labels for provenance; folders/files have readable names.
 
