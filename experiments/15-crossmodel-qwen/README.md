@@ -5,8 +5,8 @@ Status: STOPPED October 1, 2026. Strict-on smoke and one strict-off diagnostic e
 
 Both requested `workShown,answer,admittedKeyUse` and returned `admittedKeyUse,answer,workShown`. Both tested responses used alphabetical field order; no universal model claim is established. The two answer-only calls are excluded from pooled results. See the [root comparison](../../README.md).
 
-- Strict smoke: https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36870546427
-- Relaxed schema diagnostic: https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36871169396
+- Strict smoke: https://github.com/bettercall-gautam/cheat-and-deny/actions/runs/36870546427
+- Relaxed schema diagnostic: https://github.com/bettercall-gautam/cheat-and-deny/actions/runs/36871169396
 
 The remaining text records preparation, not permission to run.
 
