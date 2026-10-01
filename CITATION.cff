@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: "Jaiswal"
     given-names: "Gautam"
-version: "v1.0"
+version: "v1.1"
 license: MIT
 repository-code: "https://github.com/bettercall-gautam/cheat-and-deny"
 url: "https://github.com/bettercall-gautam/cheat-and-deny"
