@@ -11,8 +11,17 @@ on:
         options:
           - smoke
           - full
+      source_run_id:
+        description: 'Completed same-mode source run to resume; empty starts fresh'
+        type: string
+        default: ''
+      batch_pairs:
+        description: 'Full-mode maximum new pairs in this batch (1..75)'
+        type: string
+        default: '3'
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: s14-groq
   cancel-in-progress: false
@@ -35,11 +44,27 @@ jobs:
         run: |
           set -euo pipefail
           node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js > experiments/14-crossmodel-groq/results/groqhard-ci-preview.json
+      - name: Restore reviewed full evidence
+        if: inputs.source_run_id != ''
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          S14_MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          [[ "$SOURCE_RUN_ID" =~ ^[0-9]+$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID" > /tmp/source-run.json
+          node --input-type=module -e 'import fs from "node:fs";const x=JSON.parse(fs.readFileSync("/tmp/source-run.json"));if(x.status!=="completed"||x.path!==".github/workflows/s14-groq.yml")throw Error("Invalid resume source");'
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --pattern "s14-groq-${S14_MODE}-${SOURCE_RUN_ID}-*" --dir /tmp/source-evidence
+          node experiments/14-crossmodel-groq/scripts/restore-evidence.js /tmp/source-evidence "$S14_MODE"
       - name: Run selected mode
         shell: bash
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           S14_MODE: ${{ inputs.mode }}
+          BATCH_PAIRS: ${{ inputs.batch_pairs }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
         run: |
           set -euo pipefail
           if [[ -z "$GROQ_API_KEY" ]]; then
@@ -47,9 +72,10 @@ jobs:
             exit 1
           fi
           flags=(--run --approved-setup=f1d7f0ca492fb8c7cd33d6f07958769556f60793a59a360690eee4bfe63d708a)
+          if [[ -n "$SOURCE_RUN_ID" ]]; then flags+=(--resume-confession-429); fi
           case "$S14_MODE" in
             smoke) flags+=(--smoke --batch=6) ;;
-            full) flags+=(--batch=75) ;;
+            full) [[ "$BATCH_PAIRS" =~ ^[0-9]+$ ]] && (( BATCH_PAIRS >= 1 && BATCH_PAIRS <= 75 )); flags+=(--batch="$BATCH_PAIRS") ;;
             *) echo 'Invalid mode.' >&2; exit 1 ;;
           esac
           node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js "${flags[@]}" 2>&1 | tee "experiments/14-crossmodel-groq/results/groqhard-ci-${S14_MODE}.log"
