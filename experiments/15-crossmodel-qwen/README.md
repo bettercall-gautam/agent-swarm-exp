@@ -1,5 +1,7 @@
 # S15: Qwen3.8-27B on Groq
 
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
+
 Status: STOPPED October 1, 2026. Strict-on smoke and one strict-off diagnostic each returned a successful answer in the wrong field order. Zero completed pairs, zero confessions, no full run. The owner closed the experiment phase; do not dispatch again.
 
 Both requested `workShown,answer,admittedKeyUse` and returned `admittedKeyUse,answer,workShown`. Both tested responses used alphabetical field order; no universal model claim is established. The two answer-only calls are excluded from pooled results. See the [root comparison](../../README.md).
