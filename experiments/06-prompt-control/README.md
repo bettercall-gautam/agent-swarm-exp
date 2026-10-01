@@ -1,7 +1,10 @@
-<!-- (instinct) Explain this early session without relabeling it as a later field-format experiment. -->
 # Prompt Control
 
-Prompt control (historical S6): removes honesty/amnesty/threat and survival-score pressure. Normal/high worker text is identical.
+*Formerly "S6" in early notes.*
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
+
+Prompt control (historical S06): removes honesty/amnesty/threat and survival-score pressure. Normal/high worker text is identical.
 
 This is an earlier experiment, separate from the later field-format tests. Model verdicts are not verified intent. Raw files retain original internal session labels for provenance; folders/files have readable names.
 
