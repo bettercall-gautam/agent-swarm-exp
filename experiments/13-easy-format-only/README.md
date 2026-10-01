@@ -1,4 +1,3 @@
-<!-- [Instinct] Index S13's raw evidence and the material semantic-versus-labeled scoring sensitivity. -->
 # S08 bank: plain-text format contrast
 
 75/75 pairs,150 successful calls/150 attempts,no errors/retries/missing. S08 questions/keys/prefix/model/sampling unchanged; S12 plain-text suffixes replace JSON output instructions/enforcement in both turns.
