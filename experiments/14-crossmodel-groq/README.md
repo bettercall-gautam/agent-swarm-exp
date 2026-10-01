@@ -1,5 +1,5 @@
 <!-- [Instinct] Document the prepared Groq runner, provider/schema differences and execution safeguards before any key use or run. -->
-# S14 preparation: Groq cross-model S09 contrast
+# S14: completed Groq cross-model S09 contrast
 
 Status: FULL COMPLETE October1.75pairs/150successful calls in six durable batches,0API errors/retries/missing/pending. One account label throughout (`groq-account-1`). Final complete artifact: https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36868236913/artifacts/11166415175 . Earlier controls/smokes remain separate, never counted as full data.
 
@@ -60,13 +60,13 @@ Manual `workflow_dispatch` input `mode=smoke` runs `--smoke --batch=6`: first tw
 
 Artifact name: `s14-groq-<mode>-<run_id>-<run_attempt>`, retained30 days. Download the entire artifact. It includes the fixed question bank, CI preview, console log, raw JSONL, attempt JSONL, and any pending/recovery/checkpoint JSON. Failed jobs still upload evidence.
 
-Each CI job starts from its checkout, not previous artifacts. **Do not rerun a failed/partial run or dispatch another full run without inspecting evidence and preparing a reviewed resume route.** Concurrency queues rather than cancels, but does not deduplicate separate dispatches. GitHub's re-run button can submit duplicate paid/credit-bearing calls. No automatic retries of the workflow or automatic full dispatch are configured. Partial data is not full completion, and a successful job still needs verification of expected row count/order/schema/usage. Earlier smoke failures are preserved as separate CI artifacts. Full remains unstarted.
+Each CI job starts from its checkout, not previous artifacts. **Do not rerun a failed/partial run or dispatch another full run without inspecting evidence and preparing a reviewed resume route.** Concurrency queues rather than cancels, but does not deduplicate separate dispatches. GitHub's re-run button can submit duplicate paid/credit-bearing calls. No automatic retries of the workflow or automatic full dispatch are configured. Partial data is not full completion, and a successful job still needs verification of expected row count/order/schema/usage. Earlier smoke failures are preserved as separate CI artifacts. Full is now complete; the paragraph above records the original execution gate.
 
 ## Strict-output diagnostics and reasoning evidence
 
 Initial smoke failed on its first answer request (HTTP400 `json_validate_failed`, empty failed_generation). An identical one-call replay and a one-call alternate nullable-number `anyOf` spelling also failed. A separate published product-review control succeeded on120b. These are diagnostics, not completed S14 pairs, and do not establish the error's cause.
 
-The successful control returned `message.reasoning` separately from the JSON `message.content`;110 of165 completion tokens were reasoning tokens. The S14 runner now preserves returned answer/confession reasoning separately for evidence, without modifying model-visible history. Requested "answer-first" means **JSON-field order only**, not answer before hidden/model reasoning. Even perfect JSON order would not establish a pre-reasoning commitment on this provider. Model reasoning claims are generated reports, not privileged evidence of cognition. No full run has started.
+The successful control returned `message.reasoning` separately from the JSON `message.content`;110 of165 completion tokens were reasoning tokens. The S14 runner now preserves returned answer/confession reasoning separately for evidence, without modifying model-visible history. Requested "answer-first" means **JSON-field order only**, not answer before hidden/model reasoning. Even perfect JSON order would not establish a pre-reasoning commitment on this provider. Model reasoning claims are generated reports, not privileged evidence of cognition. The full run is now complete; this paragraph describes earlier diagnostic evidence.
 
 Cap8000 permits more reasoning/output than the initial3000 setting and can change truncation/missingness. One successful M01 diagnostic used6224 completion tokens,5594 reported reasoning. This supports cap pressure but is not proof that every failure had the same cause. Multi-day duration is not yet measured.
 
