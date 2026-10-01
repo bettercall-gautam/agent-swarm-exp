@@ -1,5 +1,8 @@
-<!-- (instinct) Explain this numbered session folder and its preserved evidence for first-time readers. -->
-# V3-hard: harder questions
+# S09: harder questions
+
+*Formerly "v3" and "v3-hard" in early notes. File names keep the old label.*
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
 
 Same format design, new 13-math/12-obscure-fact questions. Correct: 9/25, 2/25, 7/25. Wrong-key matches: 12/25, 21/25, 14/25. Total 47/75 (62.7%), not the earlier mistaken 44.
 
