@@ -1,7 +1,7 @@
 {
   "name": "cheat-and-deny",
   "version": "1.0.0",
-  "description": "",
+  "description": "Wrong-reference answer matching and follow-up self-reports in a small AI-assisted model experiment.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,8 @@
     "url": "git+https://github.com/bettercall-gautam/cheat-and-deny.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Gautam Jaiswal",
+  "license": "MIT",
   "type": "module",
   "bugs": {
     "url": "https://github.com/bettercall-gautam/cheat-and-deny/issues"
