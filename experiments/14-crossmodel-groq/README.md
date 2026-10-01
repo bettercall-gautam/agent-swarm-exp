@@ -1,5 +1,7 @@
 # S14: completed Groq cross-model S09 contrast
 
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
+
 Status: FULL COMPLETE October1.75pairs/150successful calls in six durable batches,0API errors/retries/missing/pending. One account label throughout (`groq-account-1`). Final complete artifact: https://github.com/bettercall-gautam/cheat-and-deny/actions/runs/36868236913/artifacts/11166415175 . Earlier controls/smokes remain separate, never counted as full data.
 
 ## Preserved and changed
