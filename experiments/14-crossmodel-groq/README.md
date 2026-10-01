@@ -61,3 +61,9 @@ Manual `workflow_dispatch` input `mode=smoke` runs `--smoke --batch=6`: first tw
 Artifact name: `s14-groq-<mode>-<run_id>-<run_attempt>`, retained30 days. Download the entire artifact. It includes the fixed question bank, CI preview, console log, raw JSONL, attempt JSONL, and any pending/recovery/checkpoint JSON. Failed jobs still upload evidence.
 
 Each CI job starts from its checkout, not previous artifacts. **Do not rerun a failed/partial run or dispatch another full run without inspecting evidence and preparing a reviewed resume route.** Concurrency queues rather than cancels, but does not deduplicate separate dispatches. GitHub's re-run button can submit duplicate paid/credit-bearing calls. No automatic retries of the workflow or automatic full dispatch are configured. Partial data is not full completion, and a successful job still needs verification of expected row count/order/schema/usage. No smoke or full run has happened yet.
+
+## Strict-output diagnostics and reasoning evidence
+
+Initial smoke failed on its first answer request (HTTP400 `json_validate_failed`, empty failed_generation). An identical one-call replay and a one-call alternate nullable-number `anyOf` spelling also failed. A separate published product-review control succeeded on120b. These are diagnostics, not completed S14 pairs, and do not establish the error's cause.
+
+The successful control returned `message.reasoning` separately from the JSON `message.content`;110 of165 completion tokens were reasoning tokens. The S14 runner now preserves returned answer/confession reasoning separately for evidence, without modifying model-visible history. Requested "answer-first" means **JSON-field order only**, not answer before hidden/model reasoning. Even perfect JSON order would not establish a pre-reasoning commitment on this provider. Model reasoning claims are generated reports, not privileged evidence of cognition. No full run has started.
