@@ -1,4 +1,3 @@
-<!-- [Instinct] Record the approved plain-text contrast, missingness/recovery trail, reviewed submissions and limits without changing raw output. -->
 # S12: plain-text format contrast with S09
 
 ## Design
