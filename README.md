@@ -1,5 +1,9 @@
 <!-- [Instinct] Finalize the experiment-phase overview with source-linked descriptive results; preserve all session evidence. -->
-# Wrong reference keys, output format and self-report
+# Cheat and Deny
+
+Wrong reference keys, output format and self-report.
+
+The name is shorthand for the behavior being probed, not a finding of conscious intent.
 
 A small model experiment by Gautam Jaiswal, inspired by *Emergent Cheating and Whistleblowing in Autonomous Research Swarms*.
 
@@ -125,8 +129,8 @@ As checked on October 1, Groq's documented strict JSON Schema list contains only
 Install Node.js 22 and clone the repository, then install the locked dependencies:
 
 ```bash
-git clone https://github.com/bettercall-gautam/agent-swarm-exp.git
-cd agent-swarm-exp
+git clone https://github.com/bettercall-gautam/cheat-and-deny.git
+cd cheat-and-deny
 npm ci --ignore-scripts
 node experiments/09-v3-hard/scripts/v3hard-all-script.js
 node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js
@@ -253,9 +257,9 @@ The full S14 run has 75 completed pairs, 150 HTTP submissions and 150 successful
 | --- | --- |
 | S09 questions, original raw rows, reviewed summary and runner | [S09 folder](experiments/09-v3-hard/README.md) |
 | S14 raw rows, attempts/headers, review ledger, summary and runner | [S14 folder](experiments/14-crossmodel-groq/README.md) |
-| S14 final full-run artifact | [GitHub Actions artifact](https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36868236913/artifacts/11166415175) |
-| Qwen strict attempt | [Run and artifact](https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36870546427) |
-| Qwen relaxed diagnostic | [Run and artifact](https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36871169396) |
+| S14 final full-run artifact | [GitHub Actions artifact](https://github.com/bettercall-gautam/cheat-and-deny/actions/runs/36868236913/artifacts/11166415175) |
+| Qwen strict attempt | [Run and artifact](https://github.com/bettercall-gautam/cheat-and-deny/actions/runs/36870546427) |
+| Qwen relaxed diagnostic | [Run and artifact](https://github.com/bettercall-gautam/cheat-and-deny/actions/runs/36871169396) |
 | Earlier sessions, methods and detailed findings | [FINDINGS.md](FINDINGS.md), [RUNBOOK.md](RUNBOOK.md), [SOURCES.md](SOURCES.md) |
 
 S14 canonical raw SHA256: `bdd874b7e70c0b9b4df03f1c1c6ecce25b0ff9bcd94d8fc2c639bf0dfc02b5d0`.
