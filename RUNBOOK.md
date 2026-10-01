@@ -1,4 +1,3 @@
-<!-- [Instinct] Replace scattered/stale execution instructions with an offline-first map; preserve completed data and runner-specific recovery semantics. -->
 # Cheat and Deny: inspection and reproduction
 
 The experiment phase is closed. This runbook explains how to inspect the evidence and prepare a separate replication. It does not authorize new model calls, paid usage or retries. Start with the [README](README.md) for the story and [FINDINGS](FINDINGS.md) for interpretation.
