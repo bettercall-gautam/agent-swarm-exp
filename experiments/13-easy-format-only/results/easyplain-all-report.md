@@ -1,4 +1,3 @@
-<!-- [Instinct] Record S13's exact S08 comparator, conflicting first-turn submissions and two scoring views without altering raw output. -->
 # S13: S08 question bank with plain-text output
 
 ## Design and execution
