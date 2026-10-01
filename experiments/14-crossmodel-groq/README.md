@@ -105,3 +105,11 @@ The workflow accepts `source_run_id` for a completed same-mode artifact. It vali
 All submissions, including bounded retries, are now spaced at least65seconds apart, with a65second initial wait. This reduces8KTPM pressure; it is not a guarantee against provider/account-wide limits or daily exhaustion. Longer Retry-After beyond the existing bounds still stops. No paid upgrade or fallback. Pacing/recovery do not change model-visible prompts or the setup hash.
 
 Offline tests restored the actual3-pair smoke artifact and used a mocked endpoint (no model calls) to complete exactly5 requests: saved M02 confession, then two answer/confession pairs. Exact M02 raw answer and provider reasoning were retained, six row IDs were present, and checkpoint cleared. Invalid hash/identity/JSON/attempt/pending states were rejected in offline fixtures. End-to-end CI continuation still requires live verification.
+
+
+## Adaptive full-run pacing
+
+<!-- [Instinct] Replace fixed transport waits for the full run; record limits without overstating exact capacity. -->
+Full-run transport now uses header-guided estimated TPM reservation and4.5second minimum spacing, falling back65seconds only when headers are missing. It logs the seven allowlisted rate-limit headers on successful and failed responses and every pacing decision. Input-token character estimate and same-phase completion history are rough, with headroom; Groq's actual reservation and other organization traffic are unknown. Returned429 still has one bounded Retry-After retry. Request headers refer to RPD, token headers to TPM; neither establishes remaining TPD. No paid upgrade. Model-visible setup hash is unchanged. Full runs in durable bounded batches, each restoring the preceding full artifact; smoke rows are never full rows. Daily or ambiguous failures pause for reviewed recovery, never a fresh75-pair rerun.
+
+Six-pair smoke verified complete after its known429 confession-only recovery: https://github.com/bettercall-gautam/agent-swarm-exp/actions/runs/36862138257/artifacts/11162646306 . Total16submissions include4earlier429s and12successful responses; the final5submissions all succeeded. All schema/order checks passed; no pending state remained. This is not a guarantee of later reliability.
