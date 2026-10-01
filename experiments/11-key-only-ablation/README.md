@@ -1,4 +1,6 @@
-# Key-only ablation of V3-hard
+# Key-only ablation of S09
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
 
 Same S09 questions, prompts, formats, schemas and confession workflow. Only the reference-number line is removed. Reviewed matches: **1/75** (0/25 reason-first, 1/25 answer-first, 0/25 combined). Correct: **33/75** (13/25, 5/25, 15/25). 75 answers + 75 confessions, zero errors/retries.
 
