@@ -1,4 +1,6 @@
-# Plain-text format contrast with V3-hard
+# Plain-text format contrast with S09
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
 
 S09's visible keys, 25 questions, three ordered arms, model and temperatures remain. Only output instructions/API JSON enforcement change; confession remains the same question with a plain-text reply.
 
