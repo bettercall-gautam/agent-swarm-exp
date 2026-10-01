@@ -6,6 +6,8 @@ import 'dotenv/config';
 import {readFile,writeFile,appendFile,mkdir,unlink} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
+// [Instinct] Header-guided transport pacing only; setup prompts/config remain unchanged.
+import {AdaptivePacer} from './adaptive-pacing.js';
 // [Instinct] Preserve the former Gemini import as a comment; use native Node fetch for the documented Groq OpenAI-compatible endpoint.
 // import {GoogleGenAI} from '@google/genai';
 // (instinct) Copy the unchanged S6 control function so preview mode never initializes a model client from worker.js. Original worker.js and its prior variants remain untouched.
@@ -137,7 +139,7 @@ if(!process.argv.includes('--run')){
   // const ai=new GoogleGenAI({apiKey:process.env.GEMINI_API_KEY,httpOptions:{timeout:30000}});
   // async function call(contents,config){return ai.models.generateContent({model,contents,config});}
   // [Instinct] Conservative TPM pacing across every submission, including retries; no model-visible change.
-  let lastCall=Date.now();
+  const pacer=new AdaptivePacer();
   const sleep=ms=>new Promise(r=>setTimeout(r,ms));
   function convertSchema(s){
     const type=s.type.toLowerCase();
@@ -153,20 +155,26 @@ if(!process.argv.includes('--run')){
     const messages=typeof contents==='string'?[{role:'user',content:contents}]:contents.map(c=>({role:c.role==='model'?'assistant':c.role,content:c.parts.map(p=>p.text).join('')}));
     const body={model,messages,temperature:config.temperature,max_completion_tokens:maxCompletionTokens,reasoning_effort:"low",response_format:{type:'json_schema',json_schema:{name:config.schemaName||'swarm_response',strict:true,schema:convertSchema(config.responseSchema)}}};
     for(let retry=0;retry<(process.argv.includes('--finish-deferred')?1:2);retry++){
-      await sleep(Math.max(0,65000-(Date.now()-lastCall)));lastCall=Date.now();
+      const kind=messages.length===1?'answer':'confession';
+      const pacing=pacer.delayMs(messages,kind);
+      await appendFile(attemptLog,JSON.stringify({event:'pacing',timestamp:new Date().toISOString(),kind,...pacing})+'\n');
+      if(pacing.stop){const e=Error(pacing.reason);e.status=429;throw e;}
+      await sleep(Math.max(0,pacing.waitMs));pacer.recordSubmission();
       const submittedAt=new Date().toISOString();attemptCount++;
       await appendFile(attemptLog,JSON.stringify({attempt:attemptCount,event:'submission',submittedAt,temperature:config.temperature,retry,messages:messages.length})+'\n');
       let res;
       try{res=await fetch(endpoint,{method:'POST',headers:{Authorization:'Bearer '+process.env.GROQ_API_KEY,'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(30000)});}catch(e){e.submissionUnknown=true;throw e;}
       const data=await res.json();
+      const rateHeaders=Object.fromEntries(['retry-after','x-ratelimit-limit-requests','x-ratelimit-limit-tokens','x-ratelimit-remaining-requests','x-ratelimit-remaining-tokens','x-ratelimit-reset-requests','x-ratelimit-reset-tokens'].map(k=>[k,res.headers.get(k)]));
+      pacer.observe(res.headers,data.usage,kind);
       if(!res.ok){
-        await appendFile(attemptLog,JSON.stringify({attempt:attemptCount,event:'returned-error',status:res.status,error:data,retryAfter:res.headers.get('retry-after')})+'\n');
+        await appendFile(attemptLog,JSON.stringify({attempt:attemptCount,event:'returned-error',status:res.status,error:data,retryAfter:res.headers.get('retry-after'),rateHeaders})+'\n');
         if(!process.argv.includes('--finish-deferred')&&retry===0&&res.status===504){await sleep(10000);continue;}
-        if(!process.argv.includes('--finish-deferred')&&retry===0&&res.status===429){const h=res.headers.get('retry-after');const seconds=Number(h);if(h&&Number.isFinite(seconds)&&seconds>=0&&seconds<=120){await sleep(Math.ceil(seconds*1000));continue;}}
+        if(!process.argv.includes('--finish-deferred')&&retry===0&&res.status===429){const decision=pacer.retryDecision(429);if(!decision.stop){await sleep(decision.waitMs);continue;}}
         const e=Error(JSON.stringify(data));e.status=res.status;throw e;
       }
       const choice=data.choices?.[0],text=choice?.message?.content;
-      await appendFile(attemptLog,JSON.stringify({attempt:attemptCount,event:'received',finishReason:choice?.finish_reason,usage:data.usage,responseId:data.id})+'\n');
+      await appendFile(attemptLog,JSON.stringify({attempt:attemptCount,event:'received',finishReason:choice?.finish_reason,usage:data.usage,responseId:data.id,rateHeaders})+'\n');
       if(choice?.finish_reason!=='stop'||typeof text!=='string'||!text.trim()){const e=Error('Non-complete output: '+choice?.finish_reason);e.status='truncated-or-empty';throw e;}
       return {text,reasoning:choice.message.reasoning??null,usageMetadata:data.usage,responseId:data.id,finishReason:choice.finish_reason};
     }
@@ -215,4 +223,4 @@ if(!process.argv.includes('--run')){
     }catch(e){state.lastError={status:e.status??null,message:e.message,submissionUnknown:!!e.submissionUnknown};await writeFile(pending,JSON.stringify(state,null,2)+'\n');console.error(`STOP ${i+1}: ${e.status||''} ${e.message}; checkpoint retained`);process.exitCode=2;break;}
   }
   console.log(`Completed ${prior.length}/75; no reasoning judgments have been guessed.`);
-}
+  }
