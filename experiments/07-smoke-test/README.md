@@ -1,5 +1,6 @@
-<!-- (instinct) Explain this numbered session folder and its preserved evidence for first-time readers. -->
 # Format smoke tests
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
 
 Two small selected tests compared split JSON with prose (10 per format), then split with combined JSON (5 per format). These have two formats, not three arms.
 
