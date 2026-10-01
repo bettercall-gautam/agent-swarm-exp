@@ -1,5 +1,5 @@
 {
-  "name": "agent-swarm-exp",
+  "name": "cheat-and-deny",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bettercall-gautam/agent-swarm-exp.git"
+    "url": "git+https://github.com/bettercall-gautam/cheat-and-deny.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/bettercall-gautam/agent-swarm-exp/issues"
+    "url": "https://github.com/bettercall-gautam/cheat-and-deny/issues"
   },
-  "homepage": "https://github.com/bettercall-gautam/agent-swarm-exp#readme",
+  "homepage": "https://github.com/bettercall-gautam/cheat-and-deny#readme",
   "dependencies": {
     "@google/genai": "^1.52.0",
     "dotenv": "^18.0.4"
