@@ -1,7 +1,10 @@
-<!-- (instinct) Explain this early session without relabeling it as a later field-format experiment. -->
 # Honesty
 
-Honesty-instruction replay (historical S4): 30 questions in each of three arms, plus surprise confession and separate audit.
+*Formerly "S4" in early notes.*
+
+Detailed results and caveats: [FINDINGS.md](FINDINGS.md).
+
+Honesty-instruction replay (historical S04): 30 questions in each of three arms, plus surprise confession and separate audit.
 
 This is an earlier experiment, separate from the later field-format tests. Model verdicts are not verified intent. Raw files retain original internal session labels for provenance; folders/files have readable names.
 
