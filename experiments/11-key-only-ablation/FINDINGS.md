@@ -17,6 +17,6 @@ Compared with S09's 47/75 matches, the concentration on those particular wrong n
 
 ## S09 versus S11: how sure are we?
 
-S09 matched the wrong number in 47/75 answers (51% to 73%) and S11 in 1/75 (0% to 7%). The Fisher exact test gives p < 0.000001. A 95% range is the band that ranges built this way would contain the true rate about 95 times in 100; the Fisher exact test asks how surprising the gap would be if both groups had the same underlying rate. The test does not say why the gap exists.
+S09 matched the wrong number in 47/75 answers (51% to 73%) and S11 in 1/75 (0% to 7%). No p-value is reported because the 75 answers are not independent (25 questions x 3 formats). A 95% range is the band that ranges built this way would contain the true rate about 95 times in 100.
 
 **Known limit:** each question was answered once per format, so the 75 answers are 25 questions times 3 formats, not 75 independent samples, and the ranges are optimistic. A single sample per question cannot be fixed after the fact. See [docs/stats.py](../../docs/stats.py).
