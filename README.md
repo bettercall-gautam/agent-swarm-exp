@@ -44,7 +44,8 @@ Built by Gautam Jaiswal, with AI assistance for code and docs.
 
 ## Read this repository
 
-- **[README](README.md):** the beginner story, session map and result tables.
+- **[README](README.md):** the story, session map, definitions, limits and how to reproduce.
+- **[Result tables](docs/results-tables.md):** every count, percentage and 95% range, checked by `npm run verify`.
 - **[FINDINGS](FINDINGS.md):** index of per-session findings (each session folder has its own `FINDINGS.md`), the review-label caveat and the statistics note.
 - **[RUNBOOK](RUNBOOK.md):** offline inspection, execution gates and recovery rules.
 
