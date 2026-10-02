@@ -1,4 +1,4 @@
-// [Instinct] Restore reviewed same-mode evidence only; verify exact setup, identities, JSON, and a returned429 confession checkpoint. No model calls or secret access.
+// [AI assistant] Restore reviewed same-mode evidence only; verify exact setup, identities, JSON, and a returned429 confession checkpoint. No model calls or secret access.
 import {readdir,readFile,writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
@@ -22,7 +22,7 @@ const attemptText=await readFile(one(stem+'-attempts.jsonl'),'utf8');if(!attempt
 if(attempts.filter(x=>x.event==='received').length<rows.length*2)throw Error('Incomplete response evidence');
 const pendingFiles=files.filter(f=>f.endsWith('.pending.json'));let pending=null;
 if(pendingFiles.length){if(pendingFiles.length!==1||path.basename(pendingFiles[0])!==stem+'-raw.jsonl.pending.json')throw Error('Ambiguous pending');pending=JSON.parse(await readFile(pendingFiles[0],'utf8'));const p=preview.plan[pending.index];if(!Number.isInteger(pending.index)||pending.index<0||pending.index>=limit||rows.some(r=>r.run===pending.index+1)||pending.setupHash!==h||pending.questionId!==p.questionId||pending.arm!==p.arm||pending.status!=='confession-submitting'||pending.lastError?.status!==429||pending.lastError?.submissionUnknown||!pending.rawAnswer||pending.rawConfession)throw Error('Not a known confession429');validateAnswer(pending.rawAnswer,p);const last=attempts.at(-1);if(last.event!=='returned-error'||last.status!==429)throw Error('Last attempt not returned429');const answer=attempts.filter(x=>x.event==='received').at(-1);if(!answer||attempts.filter(x=>x.event==='received').length!==rows.length*2+1)throw Error('Ambiguous saved-answer usage');pending.answerUsage=answer.usage;pending.recoverySource={mode,sourceDirectory:process.argv[2],originalStatus:pending.status};}
-// [Instinct] Validate all source evidence before writes, then retain every attempt and pending payload.
+// [AI assistant] Validate all source evidence before writes, then retain every attempt and pending payload.
 await writeFile(root+stem+'-raw.jsonl',raw);await writeFile(root+stem+'-attempts.jsonl',attemptText);
 if(pending)await writeFile(root+stem+'-raw.jsonl.pending.json',JSON.stringify(pending,null,2)+'\n');
 console.log('Restored '+rows.length+' '+mode+' pairs'+(pending?' and saved-answer confession429':'')+'; no model calls.');
