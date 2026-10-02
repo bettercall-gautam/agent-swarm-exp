@@ -1,0 +1,47 @@
+# [AI assistant] Owner-managed GitHub secret stays in CI; prepare smoke/full dispatch and preserve failure evidence. No automatic dispatch or rerun.
+name: S14 original M01 cap8000
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: s14-groq
+  cancel-in-progress: false
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out exact workflow revision
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+      - name: Save key-free preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          node experiments/14-crossmodel-groq/scripts/groqhard-all-script.js > experiments/14-crossmodel-groq/results/groqhard-ci-preview.json
+      - name: Run selected mode
+        shell: bash
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$GROQ_API_KEY" ]]; then
+            echo 'Missing repository secret GROQ_API_KEY.' >&2
+            exit 1
+          fi
+          node experiments/14-crossmodel-groq/scripts/groq-cap8000.js 2>&1 | tee experiments/14-crossmodel-groq/results/groqhard-cap8000.log
+      - name: Preserve evidence even after failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s14-cap8000-${{ github.run_id }}-${{ github.run_attempt }}
+          path: experiments/14-crossmodel-groq/results/
+          if-no-files-found: error
+          retention-days: 30
