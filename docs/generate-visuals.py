@@ -42,7 +42,7 @@ for n in [0,5,10,15,20,25]:
 for i,a in enumerate(A):
  y=173+i*86;b+=text(36,y+28,labels[i],20,600)
  for j,v in enumerate([sc[a],gc[a]]):
-  yy=y+j*30;lo,hi=wilson(v,25);b+=f'<rect x="230" y="{yy}" width="{v*22}" height="23" fill="{[INK,TEAL][j]}"/>'+ci_mark(230+lo*550,230+hi*550,yy+11.5)+text(240+hi*550,yy+19,f'{v}/25',17,600)
+  yy=y+j*30;lo,hi=wilson(v,25);b+=f'<rect x="230" y="{yy}" width="{v*22}" height="23" fill="{[INK,TEAL][j]}"/>'+ci_mark(230+lo*550,230+hi*550,yy+11.5)+text(250+hi*550,yy+19,f'{v}/25',17,600)
 b+=text(230,477,'Wrong-key matches (count out of 25)',17,600)+text(36,510,'S14 combined: reviewed 11/25; raw strict parser 9/25.',17,600)+text(36,540,'One saved sample per question and format; each arm has 25 answers.',17,color=SECOND)+text(36,568,'95% ranges (Wilson) treat answers as independent, so they are too narrow.',16,color=SECOND)
 (OUT/'hard-bank-key-matches.svg').write_text(wrap('Reviewed key matches by format: S09 12,21,14; S14 14,11,11 out of 25.',b,960,600))
 b=text(30,44,'One answer/confession pair',28,600)+text(30,76,'Paired format tests. S10 is answer-only; S11 omits the visible key.',17,color=SECOND)
@@ -64,7 +64,7 @@ def comparison(file,title,caveat,items,axis,foot):
  for t in [0,20,40,60,80,100]:
   x=310+t*5;b+=f'<line x1="{x}" y1="118" x2="{x}" y2="{gb}" stroke="{RULE}"/>'+text(x-8,gb+29,str(t),15,color=SECOND)
  for i,(label,num,den,color) in enumerate(items):
-  y=144+i*79;w=num/den*500;lo,hi=wilson(num,den);b+=text(36,y+27,label,18,600)+f'<rect x="310" y="{y}" width="{w}" height="34" fill="{color}"/>'+ci_mark(310+lo*500,310+hi*500,y+17)+text(322+hi*500,y+24,f'{num}/{den}',18,600)
+  y=144+i*79;w=num/den*500;lo,hi=wilson(num,den);b+=text(36,y+27,label,18,600)+f'<rect x="310" y="{y}" width="{w}" height="34" fill="{color}"/>'+ci_mark(310+lo*500,310+hi*500,y+17)+text(332+hi*500,y+24,f'{num}/{den}',18,600)
  b+=text(310,gb+66,axis,17,600)+text(36,gb+106,foot,16,color=SECOND)
  b+=f'<line x1="700" y1="{gb+62}" x2="740" y2="{gb+62}" stroke="{CI}" stroke-width="2.5"/><line x1="700" y1="{gb+54}" x2="700" y2="{gb+70}" stroke="{CI}" stroke-width="2.5"/><line x1="740" y1="{gb+54}" x2="740" y2="{gb+70}" stroke="{CI}" stroke-width="2.5"/>'+text(750,gb+68,'95% range',16,color=SECOND)
  b+=text(36,gb+130,'95% ranges (Wilson) treat answers as independent, so they are too narrow.',16,color=SECOND)
