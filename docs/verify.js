@@ -189,17 +189,18 @@ const tableAfter = (text, heading) => {
   return out.join('\n');
 };
 const readme = doc('README.md');
+const tablesDoc = doc('docs/results-tables.md');
 for (const [heading, key] of [['Did the answer match the wrong key? (S01-S06)', 'originalMatch'], ['Monitor cheating verdicts (S01-S06)', 'originalVerdict'],
   ['Did the answer match the wrong key? (S08-S14)', 'keyMatch'], ['Was the answer correct? (S08-S14)', 'correct'], ['Follow-up admissions (S08-S14)', 'admissions']]) {
-  const found = tableAfter(readme, heading);
-  if (found === null) fail(`README.md is missing the table headed "${heading}"`);
+  const found = tableAfter(tablesDoc, heading);
+  if (found === null) fail(`docs/results-tables.md is missing the table headed "${heading}"`);
   else if (found !== t[key]) {
     const a = found.split('\n'), b = t[key].split('\n');
-    b.forEach((line, i) => { if (a[i] !== line) fail(`README.md table "${heading}" row ${i}: found ${JSON.stringify(a[i])}, expected ${JSON.stringify(line)}`); });
-    if (a.length !== b.length) fail(`README.md table "${heading}" has ${a.length} lines, expected ${b.length}`);
+    b.forEach((line, i) => { if (a[i] !== line) fail(`docs/results-tables.md table "${heading}" row ${i}: found ${JSON.stringify(a[i])}, expected ${JSON.stringify(line)}`); });
+    if (a.length !== b.length) fail(`docs/results-tables.md table "${heading}" has ${a.length} lines, expected ${b.length}`);
   }
 }
-if (!readme.includes(t.fisherLine)) fail(`README.md does not contain the exact S09 vs S11 line: ${t.fisherLine}`);
+if (!tablesDoc.includes(t.fisherLine)) fail(`docs/results-tables.md does not contain the exact S09 vs S11 line: ${t.fisherLine}`);
 
 const mustHave = (path, text, items) => { for (const s of items) if (!text.includes(s)) fail(`${path} does not contain "${s}"`); };
 mustHave('README.md', readme, [
@@ -223,7 +224,7 @@ for (const [id, dir] of Object.entries(FOLDER)) {
 }
 const idx = doc('FINDINGS.md');
 for (const [id, dir] of Object.entries(FOLDER)) if (!idx.includes(`experiments/${dir}/FINDINGS.md`)) fail(`FINDINGS.md index does not link experiments/${dir}/FINDINGS.md`);
-for (const f of ['README.md', 'FINDINGS.md', ...Object.values(FOLDER).map((d) => `experiments/${d}/FINDINGS.md`)]) {
+for (const f of ['README.md', 'docs/results-tables.md', 'FINDINGS.md', ...Object.values(FOLDER).map((d) => `experiments/${d}/FINDINGS.md`)]) {
   if (/<!--/.test(doc(f))) fail(`${f} still contains an HTML comment`);
   if (/\bat this stage\b/i.test(doc(f))) fail(`${f} still contains "at this stage"`);
 }
