@@ -1,5 +1,5 @@
-// (instinct) Separate executable code from session evidence and update relative paths without changing the experiment design.
-// (instinct) Use descriptive question/result folders for the original strict designs; keep legacy A/B/C flags as aliases and preserve prompts.
+// (AI assistant) Separate executable code from session evidence and update relative paths without changing the experiment design.
+// (AI assistant) Use descriptive question/result folders for the original strict designs; keep legacy A/B/C flags as aliases and preserve prompts.
 import "dotenv/config";
 import { appendFile, access, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
@@ -54,7 +54,7 @@ if (PROBLEMS.length !== 10 || PROBLEMS.some((p) =>
 
 const CONDITIONS = ["normal", "high", "no-monitor"];
 const STRICT = process.argv.includes("--strict");
-// (instinct) Write any future A/B/C reruns inside their own session folders to match Gautam's requested repo organization.
+// (AI assistant) Write any future A/B/C reruns inside their own session folders to match Gautam's requested repo organization.
 const RESULT_FILE = fileURLToPath(new URL(`../${{A:"01-math",B:"02-knowledge",C:"03-mixed"}[SESSION]}/results/${SESSION_NAMES[SESSION]}-all-${STRICT ? "raw" : "nonstrict-raw"}.jsonl`,import.meta.url));
 const SMOKE = process.argv.includes("--smoke");
 const OUTPUT_FILE = SMOKE ? fileURLToPath(new URL(`../${{A:"01-math",B:"02-knowledge",C:"03-mixed"}[SESSION]}/results/${SESSION_NAMES[SESSION]}-all-smoke-raw.jsonl`,import.meta.url)) : RESULT_FILE;
