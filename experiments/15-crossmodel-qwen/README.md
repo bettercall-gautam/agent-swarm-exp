@@ -30,4 +30,4 @@ Sources verified October1:
 - https://console.groq.com/docs/models (preview status)
 - https://console.groq.com/docs/reasoning and https://console.groq.com/docs/api-reference (conflicting general effort docs)
 
-Workflow: [.github/workflows/s15-qwen.yml](../../.github/workflows/s15-qwen.yml), smoke default, full bounded batches and same-mode `source_run_id` restore. Download complete artifact `s15-qwen-<mode>-<runid>-<attempt>`,including failures. Full requires reviewed smoke.75pair target is not75questions.
+Workflow: [docs/archived-workflows/s15-qwen.yml](../../docs/archived-workflows/s15-qwen.yml), smoke default, full bounded batches and same-mode `source_run_id` restore. Download complete artifact `s15-qwen-<mode>-<runid>-<attempt>`,including failures. Full requires reviewed smoke.75pair target is not75questions.
