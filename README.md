@@ -27,7 +27,7 @@ I'm learning JavaScript, and I wanted to try a small experiment about model hone
 
 ## How this was made
 
-I set the direction, asked for changes and decided when to stop. Instinct, an AI assistant, helped write the scripts, run the approved experiments, check saved results and write these docs. This is AI-assisted work, not an independent human audit.
+I set the direction, asked for changes and decided when to stop. Instinct, an AI assistant, helped write the scripts, run the approved experiments, check saved results and write these docs. The same assistant also wrote `docs/verify.js` and these docs, so the checker and the text it checks share an author. No independent person has verified them yet. This is AI-assisted work, not an independent human audit.
 
 ## Read this repository
 
@@ -288,7 +288,7 @@ S10 and S11 matches are to a hidden, scoring-only old wrong number, not to a key
 
 #### How sure are these numbers?
 
-S09 matched the wrong number in 47/75 answers (51% to 73%) and S11 in 1/75 (0% to 7%). The Fisher exact test gives p < 0.000001. In plain words: that gap is far too large to be explained by luck alone if both groups had the same underlying rate. The test says nothing about why the gap exists.
+S09 matched the wrong number in 47/75 answers (51% to 73%) and S11 in 1/75 (0% to 7%). No p-value is reported because the 75 answers are not independent (25 questions x 3 formats). The gap is descriptive and says nothing about why it exists.
 
 **Known limit:** every question was answered once per format, so the 75 answers per session are 25 questions times 3 formats, not 75 independent samples. The ranges above treat them as independent, so the real uncertainty is wider. A single sample per question cannot be fixed after the fact; it needs repeated samples in a new experiment, which this project does not plan. The helpers are in [docs/stats.py](docs/stats.py).
 
