@@ -1,4 +1,4 @@
-# [Instinct] Regenerate static explanatory visuals from saved summary data; no model calls or external dependencies.
+# [AI assistant] Regenerate static explanatory visuals from saved summary data; no model calls or external dependencies.
 from pathlib import Path
 import json
 from html import escape
@@ -19,7 +19,7 @@ import json,re,collections
 ROOT=Path(__file__).resolve().parents[1]
 def rows(folder,file):return [json.loads(l) for l in (ROOT/'experiments'/folder/'results'/file).read_text().splitlines()]
 srows=rows('09-v3-hard','v3hard-all-raw.jsonl');grows=rows('14-crossmodel-groq','s14-reviewed.jsonl');nrows=rows('10-no-key-control','nokey-all-raw.jsonl');krows=rows('11-key-only-ablation','keyonly-all-raw.jsonl')
-# [Instinct] Resolve only the three documented S09 parser flags from each final-answer substring. Raw rows remain unchanged.
+# [AI assistant] Resolve only the three documented S09 parser flags from each final-answer substring. Raw rows remain unchanged.
 sflags={}
 for r in srows:
  if r['run'] in [41,70,75]:
@@ -57,7 +57,7 @@ b+=text(30,470,'25 questions × 3 formats = 75 pairs = 150 nominal successful ca
 (OUT/'answer-confession-flow.svg').write_text(wrap('A fresh prompt, answer call, confession call with same history, then offline review.',b,940,558))
 print('Wrote two static SVGs from saved sources')
 
-# [Instinct] Two descriptive pooled comparisons, verified above against saved raw/reviewed rows.
+# [AI assistant] Two descriptive pooled comparisons, verified above against saved raw/reviewed rows.
 def comparison(file,title,caveat,items,axis,foot):
  n=len(items);gb=118+n*79+25
  b=text(36,46,title,28,600)+text(36,78,caveat,16,color=SECOND)
