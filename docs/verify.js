@@ -26,16 +26,6 @@ const wilson = (k, n, z = 1.959964) => {
   return [Math.max(0, c - h), Math.min(1, c + h)];
 };
 const range = (k, n) => { const [lo, hi] = wilson(k, n); return `${Math.round(lo * 100)}% to ${Math.round(hi * 100)}%`; };
-const lchoose = (n, k) => { let s = 0; for (let i = 1; i <= k; i++) s += Math.log(n - k + i) - Math.log(i); return s; };
-const fisher = (a, b, c, d) => {
-  const r1 = a + b, col1 = a + c, t = a + b + c + d;
-  const pr = (x) => Math.exp(lchoose(col1, x) + lchoose(t - col1, r1 - x) - lchoose(t, r1));
-  const obs = pr(a);
-  let p = 0;
-  for (let x = Math.max(0, r1 - (t - col1)); x <= Math.min(r1, col1); x++) if (pr(x) <= obs * (1 + 1e-9)) p += pr(x);
-  return Math.min(1, p);
-};
-const fmtP = (p) => (p < 1e-6 ? 'p < 0.000001' : `p = ${p.toFixed(4)}`);
 
 // ---- original monitored sessions S01-S06 ----
 const ORIGINAL = {
@@ -183,8 +173,7 @@ t.correct = [head, ...rowsFor('correct')].join('\n');
 t.admissions = ['| Session | Reason-first | Answer-first | Combined | All formats |', '| --- | ---: | ---: | ---: | ---: |',
   ...['S08', 'S09', 'S11', 'S12', 'S13', 'S14'].map((id) => { const s = sessions[id].main; return `| ${LABELS[id].replace(/ \(reviewed\)/, '')} | ${s.arms.map((a, i) => `${s.admits[i]}/${a.n}`).join(' | ')} | ${sum(s.admits)}/${totN(s.arms)} |`; })].join('\n');
 const s09m = total(sessions.S09.main.arms, (a) => a.match), s11m = total(sessions.S11.main.arms, (a) => a.match);
-const pFisher = fisher(s09m, 75 - s09m, s11m, 75 - s11m);
-t.fisherLine = `S09 matched the wrong number in ${s09m}/75 answers (${range(s09m, 75)}) and S11 in ${s11m}/75 (${range(s11m, 75)}). The Fisher exact test gives ${fmtP(pFisher)}.`;
+t.fisherLine = `S09 matched the wrong number in ${s09m}/75 answers (${range(s09m, 75)}) and S11 in ${s11m}/75 (${range(s11m, 75)}). No p-value is reported because the 75 answers are not independent (25 questions x 3 formats).`;
 
 if (process.argv.includes('--tables')) { console.log(JSON.stringify(t, null, 1)); process.exit(0); }
 
@@ -210,7 +199,7 @@ for (const [heading, key] of [['Did the answer match the wrong key? (S01-S06)', 
     if (a.length !== b.length) fail(`README.md table "${heading}" has ${a.length} lines, expected ${b.length}`);
   }
 }
-if (!readme.includes(t.fisherLine)) fail(`README.md does not contain the exact Fisher line: ${t.fisherLine}`);
+if (!readme.includes(t.fisherLine)) fail(`README.md does not contain the exact S09 vs S11 line: ${t.fisherLine}`);
 
 const mustHave = (path, text, items) => { for (const s of items) if (!text.includes(s)) fail(`${path} does not contain "${s}"`); };
 mustHave('README.md', readme, [
@@ -245,4 +234,4 @@ const pr = (s) => s.map((a) => `${a.match}/${a.n}`).join(' ');
 console.log('verify OK. Recomputed from saved rows and matched against README and FINDINGS:');
 for (const id of ['S01', 'S02', 'S03', 'S04', 'S05', 'S06']) console.log(`  ${id}: matches ${CONDS.map((c) => `${original[id].by[c].match}/${original[id].by[c].n}`).join(' ')}, Monitor cheating ${CONDS.map((c) => original[id].by[c].cheat).join('/')}, ${original[id].rows} rows`);
 for (const id of SESSION_KEY) { const m = sessions[id].main; console.log(`  ${id}: matches ${pr(m.arms)} correct ${m.arms.map((a) => `${a.correct}/${a.n}`).join(' ')}${m.pairs !== undefined ? `, ${m.pairs} pairs, ${m.calls} calls` : `, ${m.answers} answers, ${m.attempts} attempts`}`); }
-  console.log(`  S09 vs S11: ${fmtP(pFisher)}`);
+  console.log('  S09 vs S11: counts and 95% ranges only, no p-value (answers not independent)');
