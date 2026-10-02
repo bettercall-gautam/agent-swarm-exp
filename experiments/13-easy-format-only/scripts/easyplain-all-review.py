@@ -1,4 +1,4 @@
-# [Instinct] Audit S08 prefix/question equality and review explicit first-response revisions separately from labeled-only parsing; raw evidence is unchanged.
+# [AI assistant] Audit S08 prefix/question equality and review explicit first-response revisions separately from labeled-only parsing; raw evidence is unchanged.
 import json,re,hashlib
 from pathlib import Path
 root=Path(__file__).resolve().parent.parent/'results'
@@ -6,7 +6,7 @@ lines=(root/'easyplain-all-raw.jsonl').read_text().splitlines();rows=[json.loads
 base=root.parent.parent/'08-v2-field-order/results';old={r['run']:r for r in map(json.loads,(base/'v2-all-raw.jsonl').read_text().splitlines())}
 assert len(rows)==75 and [r['run'] for r in rows]==list(range(1,76))
 assert (root/'easyplain-all-questions.json').read_bytes()==(base/'v2-all-questions.json').read_bytes()
-# [Instinct] Five unlabeled revisions explicitly supersede their initial answer-first labels; retain both defensible scoring views as sensitivity, not a hidden parser fix.
+# [AI assistant] Five unlabeled revisions explicitly supersede their initial answer-first labels; retain both defensible scoring views as sensitivity, not a hidden parser fix.
 revisions={13:(176,'Let me write 176 as my final answer'),18:(1320,'My independent computation is 1320'),20:(125,'let me follow my independent calculation: 125'),29:(12,"let's put 12"),31:(1425,'Since I must provide my own computed answer: 1425')}
 reviewed=[]
 for r in rows:
