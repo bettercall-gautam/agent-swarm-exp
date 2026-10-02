@@ -55,7 +55,7 @@ No push authorized by this file. Missing data and actual order changes must acco
 
 ## GitHub Actions route
 
-The owner sets a repository Actions secret named `GROQ_API_KEY` in GitHub directly. The workflow [.github/workflows/s14-groq.yml](../../.github/workflows/s14-groq.yml) receives it only in the run step's process environment. Node22, `npm ci --ignore-scripts`, and root working directory match the local runner; dotenv tolerates a missing `.env` and keeps the supplied environment. The format protocol and its exact final-turn text are included in the setup hash.
+The owner sets a repository Actions secret named `GROQ_API_KEY` in GitHub directly. The workflow [docs/archived-workflows/s14-groq.yml](../../docs/archived-workflows/s14-groq.yml) receives it only in the run step's process environment. Node22, `npm ci --ignore-scripts`, and root working directory match the local runner; dotenv tolerates a missing `.env` and keeps the supplied environment. The format protocol and its exact final-turn text are included in the setup hash.
 
 Manual `workflow_dispatch` input `mode=smoke` runs `--smoke --batch=6`: first two questions, all three arms, six pairs / twelve successful calls. It can stop earlier on order/schema/truncation/errors. Input `mode=full` runs the selected `batch_pairs` (default3): seventy-five pairs /150 successful calls, only after smoke verification and a separate go-ahead. The runner's documented bounded retries can increase submission counts; dispatch is not permission to exceed an approved call/budget scope.
 
