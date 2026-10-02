@@ -27,7 +27,7 @@ I'm learning JavaScript, and I wanted to try a small experiment about model hone
 
 ## How this was made
 
-I set the direction, asked for changes and decided when to stop. Instinct, an AI assistant, helped write the scripts, run the approved experiments, check saved results and write these docs. The same assistant also wrote `docs/verify.js` and these docs, so the checker and the text it checks share an author. No independent person has verified them yet. This is AI-assisted work, not an independent human audit.
+Experiment idea, session decisions and direction: Gautam Jaiswal. Code, docs and `docs/verify.js`: Instinct, an AI assistant. The checker and the docs it checks share an author, and no independent person has verified them yet. This is AI-assisted work, not an independent human audit.
 
 ## Read this repository
 
