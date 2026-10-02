@@ -97,7 +97,7 @@ Before retrying any uncertain submission:
 
 ### S14 durable CI route
 
-[Workflow](.github/workflows/s14-groq.yml) dispatches separately named smoke/full artifacts. Each CI checkout starts fresh; a continuation uses `source_run_id` to restore a **same-mode**, validated artifact. It checks workflow path, artifact naming, setup hash, row identities, attempt history and pending response schema/order. Completed pairs are not regenerated. A known 429 confession can resume the saved answer; ambiguous pending states stop.
+[Workflow](docs/archived-workflows/s14-groq.yml) dispatches separately named smoke/full artifacts. Each CI checkout starts fresh; a continuation uses `source_run_id` to restore a **same-mode**, validated artifact. It checks workflow path, artifact naming, setup hash, row identities, attempt history and pending response schema/order. Completed pairs are not regenerated. A known 429 confession can resume the saved answer; ambiguous pending states stop.
 
 Adaptive pacing estimates reservation from inputs and completion history and uses allowlisted headers. These estimates are not exact. Request headers reflect requests/day; token headers reflect tokens/minute, not remaining daily token capacity. A 150-call plan with an 8000 cap can exceed a nominal daily budget. Stop on an unreviewed quota/account change. Do not use the workflow's rerun button blindly or confuse smoke rows with full data.
 
