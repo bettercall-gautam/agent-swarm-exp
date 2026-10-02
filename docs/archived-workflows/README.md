@@ -1,0 +1,1 @@
+These are the manual workflows used for the S14 and S15 runs, kept as records. They sit outside `.github/workflows/`, so GitHub does not run them and they do not appear in the Actions tab. To reuse one, copy it back into `.github/workflows/` first and read the session README and RUNBOOK before running anything.
