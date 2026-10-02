@@ -1,6 +1,6 @@
 {
   "name": "cheat-and-deny",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Wrong-reference answer matching and follow-up self-reports in a small AI-assisted model experiment.",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,9 @@
   "author": "Gautam Jaiswal",
   "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "bugs": {
     "url": "https://github.com/bettercall-gautam/cheat-and-deny/issues"
   },
