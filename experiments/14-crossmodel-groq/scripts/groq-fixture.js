@@ -1,4 +1,4 @@
-// [Instinct] One exact answer-only replay, isolated from experiment output. No retries, no confession, no secret output.
+// [AI assistant] One exact answer-only replay, isolated from experiment output. No retries, no confession, no secret output.
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../results/',import.meta.url));
