@@ -1,4 +1,4 @@
-# [Instinct] Owner-managed GitHub secret stays in CI; prepare smoke/full dispatch and preserve failure evidence. No automatic dispatch or rerun.
+# [AI assistant] Owner-managed GitHub secret stays in CI; prepare smoke/full dispatch and preserve failure evidence. No automatic dispatch or rerun.
 name: S14 original M01 cap8000
 on:
   workflow_dispatch:
