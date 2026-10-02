@@ -27,7 +27,7 @@ I'm learning JavaScript, and I wanted to try a small experiment about model hone
 
 ## How this was made
 
-Experiment idea, session decisions and direction: Gautam Jaiswal. Code, docs and `docs/verify.js`: Instinct, an AI assistant. The checker and the docs it checks share an author, and no independent person has verified them yet. This is AI-assisted work, not an independent human audit.
+Built by Gautam Jaiswal, with AI assistance for code and docs.
 
 ## Read this repository
 
