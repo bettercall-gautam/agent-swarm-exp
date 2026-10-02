@@ -1,5 +1,5 @@
 import json,pathlib,collections,hashlib
-# [Instinct] Offline nonblind extraction/confession review; preserve raw parser values and two explicit unit-suffix revisions. No model calls.
+# [AI assistant] Offline nonblind extraction/confession review; preserve raw parser values and two explicit unit-suffix revisions. No model calls.
 root=pathlib.Path(__file__).resolve().parent.parent/'results';raw=root/'groqhard-all-raw.jsonl';rows=[json.loads(x) for x in raw.read_text().splitlines()];review=[]
 for r in rows:
  v=dict(r);ans=r['modelAnswer'];status=r['answerExtractionStatus']
