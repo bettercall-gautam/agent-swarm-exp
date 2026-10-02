@@ -1,0 +1,23 @@
+# Runs on every push and pull request. No API key or model call is needed: it only re-checks saved data.
+name: verify
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+      - name: Recompute counts and check README, tables and findings
+        run: npm run verify
+      - name: Regenerate charts and fail on drift
+        run: |
+          python3 docs/generate-visuals.py
+          git diff --exit-code -- docs/*.svg
