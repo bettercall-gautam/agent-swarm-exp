@@ -125,3 +125,19 @@ sha256sum experiments/14-crossmodel-groq/results/groqhard-all-raw.jsonl
 ```
 
 Check unique run IDs, expected bank/arm/model/hash, row count, confession presence where required, unresolved parser flags, missing/pending state and successful/failed submission totals. Keep raw bytes unchanged. Present results with [README limitations](README.md#limits-on-interpretation), source links and scoring sensitivities. Counts support descriptive comparisons, not intentional-lying labels or guaranteed causal mechanisms. No further run, post or share is initiated by this document.
+
+## 8. Live replication notes (moved from the README)
+
+A live replication needs the corresponding provider account and a secure process environment (`GEMINI_API_KEY` or `GROQ_API_KEY`). Never commit a key. Check current model access, prices and quota first. The runners' execution form is `node <runner> --run --approved-setup=<preview hash> --batch=<bounded count>`; this is a template, not a ready-to-run new study. Completed tracked outputs are already populated. Create separately named runner/output paths and review that new setup before executing; do not delete evidence to force a rerun. S14's exact route and durable recovery are documented in its session README; [RUNBOOK.md](RUNBOOK.md) covers Gemini. Inspect any pending checkpoint before retrying an uncertain submission. No parallel copies, silent fallback or new experiment is planned here.
+
+## 9. Provider documentation (moved from the README)
+
+- [Groq structured outputs](https://console.groq.com/docs/structured-outputs): current strict-schema model list and enforcement semantics.
+- [Groq rate limits](https://console.groq.com/docs/rate-limits): plan limits and header meanings, checked with the Free tab selected.
+- [Groq API reference](https://console.groq.com/docs/api-reference): completion budget and request parameters.
+- [Groq model catalogue](https://console.groq.com/docs/models): current model availability.
+- [Qwen3.8 model card](https://console.groq.com/docs/model/qwen/qwen3.8-27b): model-specific reasoning controls.
+
+### S14 run details (moved from the README)
+
+The full S14 run has 75 completed pairs, 150 HTTP submissions and 150 successful calls, with zero full-run API errors, retries or missing pairs. Earlier diagnostics and partial smokes are separate. It used one account label, `groq-account-1`; that label is not a verified provider account ID. The measured elapsed time was 43 minutes 54.531 seconds, including gaps between durable batches.
