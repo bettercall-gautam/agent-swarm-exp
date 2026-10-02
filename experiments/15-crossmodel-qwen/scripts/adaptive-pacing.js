@@ -1,4 +1,4 @@
-// [Instinct] Prepared only. Header-guided pacing estimates next TPM reservation; never claims an exact token count or daily-token budget.
+// [AI assistant] Prepared only. Header-guided pacing estimates next TPM reservation; never claims an exact token count or daily-token budget.
 export function durationMs(s){
  if(typeof s!=='string'||!s.trim())return null;
  if(/^\d+(?:\.\d+)?$/.test(s))return Math.ceil(Number(s)*1000);
